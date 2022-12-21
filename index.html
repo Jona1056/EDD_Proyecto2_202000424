@@ -31,7 +31,10 @@
                     <input id="password" type="password" placeholder="escribe tu contraseña" name="password" required>
                     <label><input type="checkbox" id="check1" value="2" class="inline">Admin</label>
 
-                    <button type="button" onclick="login()">INGRESAR</button>
+                    <button type="button" onclick="loginadmin()">
+                        <span></span>
+                        <span></span>INGRESAR
+                    </button>
                 </form>
                 <div class="pie-form">
                     <hr>
@@ -78,14 +81,88 @@
 
                     <label for="password">Contraseña</label>
                     <input id="password" type="password" placeholder="Contraseña" name="password" required>
-                  
 
-                    <button type="button" onclick="create()">Crear</button>
+
+                    <button onclick="create()">
+                        <span></span>
+                        <span></span>
+                        Crear
+                    </button>
                 </form>
-            
+
             </span>
         </div>
     </div>
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <!-- VENTANA ADMINISTRADOR ------------------------------------------ -->
+    <div id="admin">
+        <header>
+            <div class="container">
+                <h3>MovieCats</h3>
+                <ul>
+                    <li onclick="Back()">Cerrar Sesion</li>
+                </ul>
+            </div>
+        </header>
+
+
+        <!-- cargar archivos -->
+        <div class="FILEUSUARIOS">
+            <input type="file" id="fichero-tarifas" class="input-file" value="">
+            Subir Usuarios
+        </div>
+        <div class="FILEPELICULAS">
+            <input type="file" id="fichero-tarifas" class="input-file" value="">
+            Subir Peliculas
+        </div>
+        <div class="FILEACTORES">
+            <input type="file" id="fichero-tarifas" class="input-file" value="">
+            Subir Actores
+        </div>
+        <div class="FILECATEGORIAS">
+            <input type="file" id="fichero-tarifas" class="input-file" value="">
+            Subir Categorias
+        </div>
+
+
+
+        <!-- --------------------------- -->
+        <button id="bgrafousuarios">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>Grafo Usuarios
+        </button>
+        <button id="bgrafopeliculas">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>Grafo Peliculas
+        </button>
+        <button id="bgrafoactores">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>Grafo Actores
+        </button>
+        <button id="bgrafocategorias">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>Grafo Categorias
+        </button>
+
+        <div id="showlist" style="background-color: #D3D3D3;">
+
+        </div>
+
+
+
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------- -->
 
 
 
