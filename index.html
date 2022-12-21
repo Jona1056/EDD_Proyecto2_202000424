@@ -1,22 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MovieCats</title>
     <link rel="stylesheet" href="./styles/style.css" />
 </head>
+
 <body>
-    <div id="inicio">hola mundo</div>
-    
+
+    <!-- ------------------------------------------
+    PANTALLA LOGIN -->
+    <div id="LOGIN">
+        <header>
+            <div class="container">
+                <h3>MovieCats</h3>
+
+            </div>
+        </header>
+        <div class="PRINCIPAL">
+            <span id="block">
+
+                <form id="loginform">
+                    <label for="usuario">Usuario</label>
+                    <input id="usuario" type="text" name="usuario" placeholder="Escribe tu usuario" required>
+
+                    <label for="password">Contraseña</label>
+                    <input id="password" type="password" placeholder="escribe tu contraseña" name="password" required>
+                    <label><input type="checkbox" id="check1" value="2" class="inline">Admin</label>
+
+                    <button type="button" onclick="login()">INGRESAR</button>
+                </form>
+                <div class="pie-form">
+                    <hr>
+                    <a href="#" onclick="crearcuenta()">¿No tienes Cuenta? Registrate</a>
+                    <hr>
+
+
+                </div>
+            </span>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------- -->
+    <!-- VENTANA CREAR USUARIO -->
+    <div id="crearusuario">
+        <header>
+            <div class="container">
+                <h3>MovieCats</h3>
+                <ul>
+                    <li onclick="Home()">Home</li>
+                </ul>
+
+            </div>
+        </header>
+
+        <div class="PRINCIPAL1">
+            <span id="block">
+
+                <form id="loginform">
+                    <label for="usuario">Nombre Completo</label>
+                    <input id="nombre" type="text" name="usuario" placeholder="Escribe tu nombre completo" required>
+
+                    <label for="usuario">Username</label>
+                    <input id="usuario" type="text" name="usuario" placeholder="Escribe tu username" required>
+
+                    <label for="usuario">DPI</label>
+                    <input id="DPI" type="number" name="usuario" placeholder="Escribe tu DPI" required>
+
+                    <label for="password">Correo</label>
+                    <input id="correo" type="text" placeholder="Contraseña" name="password" required>
+
+                    <label for="password">Telefono</label>
+                    <input id="telefono" type="number" placeholder="Contraseña" name="password" required>
+
+                    <label for="password">Contraseña</label>
+                    <input id="password" type="password" placeholder="Contraseña" name="password" required>
+                  
+
+                    <button type="button" onclick="create()">Crear</button>
+                </form>
+            
+            </span>
+        </div>
+    </div>
 
 
 
 
 
 
-<!-----------------------------------------------------------------------------------------
+
+    <!-----------------------------------------------------------------------------------------
     //SCRIPTS -->
 
     <script src="//d3js.org/d3.v5.min.js"></script>
@@ -26,8 +103,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
-<!--------------------------------------------------------------------------------------  -->
+    <!--------------------------------------------------------------------------------------  -->
 
 
 </body>
+
 </html>
