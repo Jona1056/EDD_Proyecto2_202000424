@@ -5,6 +5,9 @@
 function crearcuenta(){
     document.getElementById("LOGIN").style.display = "none";
     document.getElementById("crearusuario").style.display="grid";
+    document.getElementById("usuario").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("check1").checked ="";
 }
 
 function Home(){
@@ -12,7 +15,7 @@ function Home(){
     document.getElementById("crearusuario").style.display="none";
 }
 
-function create(){
+function GOcreate(){
     document.getElementById("LOGIN").style.display = "grid";
     document.getElementById("crearusuario").style.display="none";
 
@@ -78,7 +81,6 @@ function Back(){
       } else {
         let recorrido = this.head;
         while (recorrido) {
-            console.log(recorrido.username);
             if (user == recorrido.username && passw == recorrido.password) {
               document.getElementById("LOGIN-1").style.display = "none";
               document.getElementById("PANTALLA-USUARIO").style.display = "block";
@@ -185,23 +187,17 @@ function loginadmin(){
         if(check){
             if(user == admin.nombre_usuario && password == admin.contrasenia){
                 goAdmin();
-                
+                document.getElementById("usuario").value = "";
+                document.getElementById("password").value = "";
+                document.getElementById("check1").checked ="";         
             }else{
                 swal("Oops!", "ADMINISTRADOR ERRONEO", "error");
             }
-        }else{
-          
+        }else{ 
             clientes.login_us(user,password);
-
-
-
         }
       }
 }
-
-
-
-
 //---------------------------------
 // FUNCIONAMIENTO CLIENTES
 
@@ -241,4 +237,35 @@ document
 
 function grafoclientes(){
   clientes.graph("showlist");
+}
+
+//CREAR CLIENTE UNO POR UNO
+function create_cliente1(){
+  let user = document.getElementById("usuario1").value;
+  let nombre =  document.getElementById("nombre1").value;
+  let correo = document.getElementById("correo1").value;
+  let telefono=  document.getElementById("telefono1").value;
+  let password = document.getElementById("password1").value;
+  let dpi = document.getElementById("DPI1").value;
+ 
+  if(user == "" || nombre == "" || correo == "" || telefono == ""   || password == "" || dpi ==""){
+    swal("!Oops","Llene todos los campos","error")
+  }else{
+    clientes.add(dpi,nombre,user,correo,password,telefono);
+    GOcreate();
+  }
+
+}
+
+//DESCARGAR GRAFOCLIENTE
+function downloadcliente(){
+
+    
+
+  html2canvas($('#showlist')[0]).then(function (canvas) {
+      return Canvas2Image.saveAsPNG(canvas);
+      $(".response").append(canvas);
+  });
+
+
 }

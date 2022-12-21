@@ -65,25 +65,25 @@
 
                 <form id="loginform1">
                     <label for="usuario">Nombre Completo</label>
-                    <input id="nombre" type="text" name="usuario" placeholder="Escribe tu nombre completo" required>
+                    <input id="nombre1" type="text" name="usuario" placeholder="Escribe tu nombre completo" >
 
                     <label for="usuario">Username</label>
-                    <input id="usuario" type="text" name="usuario" placeholder="Escribe tu username" required>
+                    <input id="usuario1" type="text" name="usuario" placeholder="Escribe tu username" >
 
                     <label for="usuario">DPI</label>
-                    <input id="DPI" type="number" name="usuario" placeholder="Escribe tu DPI" required>
+                    <input id="DPI1" type="number" name="usuario" placeholder="Escribe tu DPI" >
 
                     <label for="password">Correo</label>
-                    <input id="correo" type="text" placeholder="Escribe tu correo" name="password" required>
+                    <input id="correo1" type="text" placeholder="Escribe tu correo" name="password" >
 
                     <label for="password">Telefono</label>
-                    <input id="telefono" type="number" placeholder="Escribe tu telefono" name="password" required>
+                    <input id="telefono1" type="number" placeholder="Escribe tu telefono" name="password" >
 
                     <label for="password">Contraseña</label>
-                    <input id="password" type="password" placeholder="Contraseña" name="password" required>
+                    <input id="password1" type="password" placeholder="Contraseña" name="password" >
 
 
-                    <button onclick="create()">
+                    <button type="button" onclick="create_cliente1()">
                         <span></span>
                         <span></span>
                         Crear
@@ -121,7 +121,7 @@
             Subir Actores
         </div>
         <div class="FILECATEGORIAS">
-            <input type="file" id="fichero-categorias" class="input-file" value="">
+            <input type="button" id="fichero-categorias" class="input-file" value="">
             Subir Categorias
         </div>
 
@@ -157,6 +157,28 @@
 
         </div>
 
+        <div class="dowloandlist">
+            <input type="button" id="fichero-categorias" class="input-file" onclick="downloadcliente()" value="">
+            Descargar Clientes
+        </div>
+        <div class="dowloanpeliculas">
+            <input type="button" id="fichero-categorias" class="input-file" value="">
+            Descargar Peliculas
+        </div>
+        <div class="dowloanactores">
+            <input type="button" id="fichero-categorias" class="input-file" value="">
+            Descargar Actores
+        </div>
+        <div class="dowloancategorias">
+            <input type="button" id="fichero-categorias" class="input-file" value="">
+            Descargar Categorias
+        </div>
+
+
+
+
+    
+
 
 
     </div>
@@ -178,6 +200,10 @@
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
     <script src="./jss/main.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://superal.github.io/canvas2image/canvas2image.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
 
 
     <!--------------------------------------------------------------------------------------  -->
