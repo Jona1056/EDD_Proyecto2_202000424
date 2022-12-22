@@ -117,7 +117,7 @@
             Subir Peliculas
         </div>
         <div class="FILEACTORES">
-            <input type="file" id="fichero-actores" class="input-file" value="">
+            <input type="file" id="fichero-actores"  onclick="loadActors()" class="input-file" value="">
             Subir Actores
         </div>
         <div class="FILECATEGORIAS">
@@ -140,7 +140,7 @@
             <span></span>
             <span></span>Grafo Peliculas
         </button>
-        <button id="bgrafoactores">
+        <button id="bgrafoactores" onclick="grafoactores()">
             <span></span>
             <span></span>
             <span></span>
@@ -156,9 +156,12 @@
         <div id="showlist" style="background-color: #D3D3D3;">
 
         </div>
+        <div id="showactores" style="background-color: #D3D3D3;">
+
+        </div>
 
         <div class="dowloandlist">
-            <input type="button" id="fichero-categorias" class="input-file" onclick="downloadcliente()" value="">
+            <input type="button" id="fichero-categorias1" class="input-file" onclick="downloadcliente()" value="">
             Descargar Clientes
         </div>
         <div class="dowloanpeliculas">
@@ -203,6 +206,7 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://superal.github.io/canvas2image/canvas2image.js "></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
    
 
 
