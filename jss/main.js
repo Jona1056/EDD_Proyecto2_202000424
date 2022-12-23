@@ -32,198 +32,90 @@ function Back(){
 
 //ARBOL BINARIO
 
-class BSTreeNode{
+class Arbol{
 
-  constructor(data){
+  constructor(contenido){
 
-      this.data = data;
+      this.contenido = contenido;
       this.left = null;
-      this.right = null;
-
+      this.right = null
   }
+  //GETTERS Y SETTERS
+  //del contenido y de derecha o izquierda
 
-  //Getters
-  getData(){
-
-      return this.data;
+  getContenido(){
+      return this.contenido;
   }
-
   getLeft(){
-
       return this.left;
   }
-
   getRight(){
-
       return this.right;
   }
 
-  //Setters
-  setData(data){
-
-      this.data = data;
+  setContenido(contenido){
+      this.contenido = contenido;
   }
-
   setLeft(left){
-
       this.left = left;
   }
-
   setRight(right){
-
       this.right = right;
   }
 }
-class BSTree{
+class ArbolBinario{
 
   constructor(){
 
-      this.root = null;
-      this.graphviz = '';
+      this.head = null;
+      this.graphviz = ''; 
 
   }
 
 
-  add(data){
+  add(contenido){
 
-      if(this.root == null){
+      if(this.head== null){//si la cabeza esta null agrega el primer dato
 
-          let newNode = new BSTreeNode(data);
-          this.root = newNode;
+          let newNode = new Arbol(contenido);
+          this.head = newNode;
       }else{
 
-          this._add(this.root, data);
+          this._add(this.head, contenido); // si no mandamos a llamar el metodo para ir llenando el metodo de izquierda a derecha
       }
 
 
   }
 
-  _add(node, data){
+  _add(node, contenido){
 
-      if(data.dni < node.getData().dni){
+      if(contenido.dni < node.getContenido().dni){// si el dato que entra es menor que el primer dato que esta en cabeza se va a la izquierda
 
-          if(node.getLeft() == null){
-              let newNode =  new BSTreeNode(data);
+          if(node.getLeft() == null){ 
+              let newNode =  new Arbol(contenido);
               node.setLeft(newNode);
 
           }else{
-              this._add(node.getLeft(), data);
+              this._add(node.getLeft(), contenido);
           }
 
 
-      }else if(data.dni > node.getData().dni){
+      }else if(contenido.dni > node.getContenido().dni){ // si el dato es mayor hace lo inverso que el anterior paso
 
           if(node.getRight() == null){
-              let newNode =  new BSTreeNode(data);
+              let newNode =  new Arbol(contenido);
               node.setRight(newNode);
 
           }else{
-              this._add(node.getRight(), data);
+              this._add(node.getRight(), contenido);
 
           }
 
       }else{
 
-          console.log('Se enconstro un elemento igual al que se quiere insetar, insercción fallida.')
+          console.log('dato igual, no se agrega')
       }
   }
-
-  //Tours
-
-  //Inorden
-  inorden(){
-
-      if(this.root == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._inorden(this.root);
-      }
-  }
-
-  _inorden(node){
-
-      if(node != null){
-
-          this._inorden(node.getLeft());
-          console.log(node.getData() + ' ');
-          this._inorden(node.getRight());
-      }
-
-  }
-
-  inordenR(){
-
-      if(this.root == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._inordenR(this.root);
-      }
-  }
-
-  _inordenR(node){
-
-      if(node != null){
-
-          this._inordenR(node.getRight());
-          console.log(node.getData() + ' ');
-          this._inordenR(node.getLeft());
-      }
-
-  }
-
-  //Preorden
-  preorden(){
-
-      if(this.root == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._preorden(this.root);
-      }
-  }
-
-  _preorden(node){
-
-      if(node != null){
-
-          console.log(node.getData() + ' ');
-          this._preorden(node.getLeft());
-          this._preorden(node.getRight());
-      }
-
-
-  }
-
-  //PostOrden
-  postorden(){
-
-      if(this.root == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._postorden(this.root);
-      }
-  }
-
-  _postorden(node){
-
-      if(node != null){
-
-          this._postorden(node.getLeft());
-          this._postorden(node.getRight());
-          console.log(node.getData() + ' ');
-          
-      }
-
-
-  }
-
   //Graphviz
   graph(idDiv){
 
@@ -249,33 +141,36 @@ class BSTree{
 
   preordenGraph(){
 
-      if(this.root == null){
+      if(this.head == null){
 
           console.log('No se ha insertado nada en el BSTree.');
       }else{
 
-          this._preordenGraph(this.root);
+          this._preordenGraph(this.head);
       }
   }
 
   _preordenGraph(node){
 
       if(node != null){
-
+ //comenzamos con el lado izquierdo ya es es preodrden
           if(node.getLeft() != null){
 
-              this.graphviz += node.getData().dni+ '[label="' + node.getData().nombre_actor+ '"];\n';
-              this.graphviz += node.getLeft().getData().dni + '[label="' + node.getLeft().getData().nombre_actor+ '"];\n';
-              this.graphviz += node.getData().dni + ' -> ' + node.getLeft().getData().dni+ '\n';
+              this.graphviz += node.getContenido().dni+ '[label="' + node.getContenido().nombre_actor+ '"];\n';
+              this.graphviz += node.getLeft().getContenido().dni + '[label="' + node.getLeft().getContenido().nombre_actor+ '"];\n';
+              this.graphviz += node.getContenido().dni + ' -> ' + node.getLeft().getContenido().dni+ '\n';
           }
+//terminamos con el derecho agregando los label en cada corrida que pasa 
           if(node.getRight() != null){
               
-              this.graphviz += node.getData().dni + '[label="' + node.getData().nombre_actor+ '"];\n';
-              this.graphviz += node.getRight().getData().dni + '[label="' + node.getRight().getData().nombre_actor+ '"];\n';
-              this.graphviz += node.getData().dni + ' -> ' + node.getRight().getData().dni + '\n';
+              this.graphviz += node.getContenido().dni + '[label="' + node.getContenido().nombre_actor+ '"];\n';
+              this.graphviz += node.getRight().getContenido().dni + '[label="' + node.getRight().getContenido().nombre_actor+ '"];\n';
+              this.graphviz += node.getContenido().dni + ' -> ' + node.getRight().getContenido().dni + '\n';
           }
           this._preordenGraph(node.getLeft());
           this._preordenGraph(node.getRight());
+      }else{
+        console.log("no existen datos")
       }
 
 
@@ -582,7 +477,7 @@ const admin = {
     telefono: 12345678,
   };
 let clientes = new listaenlazada();
-let actors = new BSTree();
+let actors = new ArbolBinario();
 let  graphviz =""
 
   //--------------------------------------------------------
