@@ -28,6 +28,15 @@ function Back(){
     document.getElementById("LOGIN").style.display = "grid";
     document.getElementById("admin").style.display="none";
 }
+
+function Back2(){
+    document.getElementById("LOGIN").style.display = "grid";
+    document.getElementById("VENTANA-USUARIO").style.display="none";
+    document.getElementById("usuario").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("check1").checked ="";
+
+}
 class comentario{
     constructor(pelicula,comentario1){
         
@@ -103,49 +112,6 @@ class ArbolAVL{
       this.raiz = null;
       this.grapho = ''
   }
-
-  //search
-  search(data){
-
-      if(this.raiz == null){
-
-          console.log('no se ha insertado nada en el AVLTree.')
-
-          return null;
-      }else if(data < this.raiz.getData().id_pelicula){
-
-          return this._search(data, this.raiz.getLeft());
-      }else if(data > this.raiz.getData().id_pelicula){
-
-          return this._search(data, this.raiz.getRight());
-      }else{
-
-          console.log(data + this.raiz.getData().id_pelicula);
-          console.log('Si esta retornando dato');
-          return this.raiz.getData();
-      }
-
-  }
-
-  _search(data, node){
-
-      
-      if(data < node.getData().id_pelicula){
-          return this._search(data, node.getLeft());
-
-      }else if(data > node.getData().id_pelicula){
-          return this._search(data, node.getRight());
-
-      }else if(node == null){
-          return  null;
-
-      }else{
-          console.log(data + node.getData().id_pelicula);
-          console.log('Si esta retornando dato');
-          return node.getData();
-      }
-  }
-
   //OBTENER ALTURA DEL NODO
   getAltura2(node){
       if(node == null){
@@ -273,102 +239,6 @@ class ArbolAVL{
       }
 
   }
-
-  //Tours 
-  //Inorden
-  inorden(){
-
-      if(this.raiz == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._inorden(this.raiz);
-      }
-  }
-
-  _inorden(node){
-
-      if(node != null){
-
-          this._inorden(node.getIzquierda());
-          console.log(node.getData() + ' ');
-          this._inorden(node.getDerecha());
-      }
-
-  }
-
-  inordenR(){
-
-      if(this.raiz == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._inordenR(this.raiz);
-      }
-  }
-
-  _inordenR(node){
-
-      if(node != null){
-
-          this._inordenR(node.getDerecha());
-          console.log(node.getData() + ' ');
-          this._inordenR(node.getIzquierda());
-      }
-
-  }
-
-  //Preorden
-  preorden(){
-
-      if(this.raiz == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._preorden(this.raiz);
-      }
-  }
-
-  _preorden(node){
-
-      if(node != null){
-
-          console.log(node.getData() + ' ');
-          this._preorden(node.getIzquierda());
-          this._preorden(node.getDerecha());
-      }
-
-
-  }
-
-  //PostOrden
-  postorden(){
-
-      if(this.raiz == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._postorden(this.raiz);
-      }
-  }
-
-  _postorden(node){
-
-      if(node != null){
-
-          this._postorden(node.getIzquierda());
-          this._postorden(node.getDerecha());
-          console.log(node.getData() + ' ');
-          
-      }
-
-
-  }
-
   //Graphviz
   graph1(idDiv){
 
@@ -426,126 +296,499 @@ class ArbolAVL{
           this._preordenGraph(node.getDerecha());
       }
 
-
   }
-
-  //inorden Cards
-
-  inordenCard(idDiv){
-
-      if(this.raiz == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._inordenCard(this.raiz, idDiv);
-      }
-  }
-
-  _inordenCard(node, idDiv){
-
-      if(node != null){
-
-          this._inordenCard(node.getLeft(), idDiv);
-          
-          //
-          let card = document.querySelector(idDiv);
-          
-
-          let newDiv = document.createElement("div");
-          card.innerHTML += `
-          <div class="card" id="cardsMovieUser">
-              <div class="card-body">
-
-                  <div id="movieName">
-                      <img src="https://cdn-icons-png.flaticon.com/512/2809/2809590.png" id="imageP">
-                      <h4>${node.getData().nombre_pelicula}</h4>
-
-                  </div>  
-
-                  <div id="description">
-                      <h5 class="card-title">Descripción</h5>
-                      <p class="card-text">${node.getData().descripcion}</p>
-
-                  </div>
-        
-                  <div id="optionBM">
-                      <button type="button" class="btn btn-primary" id="${node.getData().id_pelicula}" style="float: left;  margin-left: 1rem; margin-right: 1rem;" onclick="info(this.id)">información</button>
-                      <button type="button" class="btn btn-primary" id="${node.getData().id_pelicula}" style="float: left;  margin-left: 1rem; margin-right: 1rem;" onclick="alquiler(this.id)">Alquilar</button>
-                      <p id="precio">Q. ${node.getData().precio_Q}.00</p>
-
-                  </div>
-        
-              </div>
-          </div>`;
-
-          //console.log(node.getData() + ' ');
-
-          //
-          this._inordenCard(node.getRight(), idDiv);
-      }
-
-  }
-
-  inordenCardR(idDiv){
-
-      if(this.raiz == null){
-
-          console.log('No se ha insertado nada en el BSTree.');
-      }else{
-
-          this._inordenCardR(this.raiz, idDiv);
-      }
-  }
-
-  _inordenCardR(node, idDiv){
-
-      if(node != null){
-
-          this._inordenCardR(node.getRight(), idDiv);
-
-          //
-          let card = document.querySelector(idDiv);
-          
-
-          let newDiv = document.createElement("div");
-          card.innerHTML += `
-          <div class="card" id="cardsMovieUser">
-              <div class="card-body">
-
-                  <div id="movieName">
-                      <img src="https://cdn-icons-png.flaticon.com/512/2809/2809590.png" id="imageP">
-                      <h4>${node.getData().nombre_pelicula}</h4>
-
-                  </div>  
-
-                  <div id="description">
-                      <h5 class="card-title">Descripción</h5>
-                      <p class="card-text">${node.getData().descripcion}</p>
-
-                  </div>
-        
-                  <div id="optionBM">
-                      <button type="button" class="btn btn-primary" id="${node.getData().id_pelicula}" style="float: left;  margin-left: 1rem; margin-right: 1rem;" onclick="info(this.id)">información</button>
-                      <button type="button" class="btn btn-primary" id="${node.getData().id_pelicula}" style="float: left;  margin-left: 1rem; margin-right: 1rem;" onclick="alquiler(this.id)">Alquilar</button>
-                      <p id="precio">Q. ${node.getData().precio_Q}.00</p>
-
-                  </div>
-        
-              </div>
-          </div>`;
-
-          //console.log(node.getData() + ' ');
-
-
-          this._inordenCardR(node.getLeft(), idDiv);
-      }
-
-  }
-
-
 
 }   
+
+//ARBOL AVL DE BUSQUEDA
+class alquilados{
+    constructor(pelicula,alquilada){
+        this.pelicula = pelicula;
+        this.alquilada = alquilada;
+        this.next = null;
+        this.prev = null;
+
+    }
+}
+class NodoAVL2{
+
+    constructor(data){
+  
+        this.data = data;
+        this.altura = 0;
+        this.izquierda = null;
+        this.derecha = null;
+        this.comentario = new comentario();
+        this.next = null;
+    
+    }
+  
+    //Getters
+    getData(){
+  
+        return this.data;
+    }
+  
+    getIzquierda(){
+  
+        return this.izquierda;
+    }
+  
+    getDerecha(){
+  
+        return this.derecha;
+    }
+  
+    getAltura(){
+  
+        return this.altura;
+    }
+  
+    //Setters
+    setData(data){
+  
+        this.data = data;
+    }
+  
+    setIzquierda(izquierda){
+  
+        this.izquierda = izquierda;
+    }
+  
+    setDerecha(derecha){
+  
+        this.derecha = derecha;
+    }
+  
+    setAltura(altura){
+  
+        this.altura = altura;
+    }
+  }
+  
+  class ArbolAVL2{
+  
+  
+    constructor(){
+  
+        this.raiz = null;
+        this.grapho = ''
+        this.head = null;
+        this.tail = null;
+    }
+  
+    //search
+    search(data){
+  
+        if(this.raiz == null){
+  
+            console.log('no se ha insertado nada en el AVLTree.')
+  
+            return null;
+        }else if(data < this.raiz.getData().id_pelicula){
+  
+            return this._search(data, this.raiz.getLeft());
+        }else if(data > this.raiz.getData().id_pelicula){
+  
+            return this._search(data, this.raiz.getRight());
+        }else{
+  
+            console.log(data + this.raiz.getData().id_pelicula);
+            console.log('Si esta retornando dato');
+            return this.raiz.getData();
+        }
+  
+    }
+  
+    _search(data, node){
+  
+        
+        if(data < node.getData().id_pelicula){
+            return this._search(data, node.getLeft());
+  
+        }else if(data > node.getData().id_pelicula){
+            return this._search(data, node.getRight());
+  
+        }else if(node == null){
+            return  null;
+  
+        }else{
+            console.log(data + node.getData().id_pelicula);
+            console.log('Si esta retornando dato');
+            return node.getData();
+        }
+    }
+  
+    //OBTENER ALTURA DEL NODO
+    getAltura2(node){
+        if(node == null){
+            return -1;
+        }else{
+            return node.getAltura();
+        }
+    }
+  
+    //ROTACION SIMPLE A LA IZQUIERDA
+    rotacionizquierda(node){
+  
+        let  temp = node.getIzquierda(); //guardamos el nodo que viene obtenemos su izquierdo
+        node.setIzquierda(temp.getDerecha()); //al nodo que viene a la izquierda le mandamos el dato del temp derecha
+        temp.setDerecha(node); // y a la derecha le mandamos el nodo que viene para hacer el cambio
+        node.setAltura(Math.max(this.getAltura2(node.getIzquierda()), this.getAltura2(node.getDerecha()))+1); //mandamos a obtener la nueva altura
+        temp.setAltura(Math.max(this.getAltura2(temp.getIzquierda()), this.getAltura2(temp.getDerecha()))+1)
+   
+        return temp;
+    }
+  
+    //Simple Rotation Right
+    rotacionderecha(node){
+     //rotacion derecha es igual solo que inverso 
+        let  temp = node.getDerecha();
+        node.setDerecha(temp.getIzquierda());
+        temp.setIzquierda(node);
+        node.setAltura(Math.max(this.getAltura2(node.getIzquierda()), this.getAltura2(node.getDerecha()))+1);
+        temp.setAltura(Math.max(this.getAltura2(temp.getIzquierda()), this.getAltura2(temp.getDerecha()))+1) //Math.max retorna el valor mas alto entre dos
+  
+        return temp;
+    }
+  
+    doblerotacionizquierda(node){
+  
+        let temp;  
+        node.setIzquierda(this.rotacionderecha(node.getIzquierda())); // el nodo que viene le setiamos al lado izquierdo una rotacion derecha con el lado izqueirdo
+        temp = this.rotacionizquierda(node);
+        return temp;
+    }
+  
+    doblerotacionderecha(node){
+  
+        let temp;
+        node.setDerecha(this.rotacionizquierda(node.getDerecha()));
+        temp = this.rotacionderecha(node);
+  
+        return temp;
+    }
+  
+  
+    add(Nodo1, node){
+  
+        let newNode = node;
+        if(Nodo1.getData().nombre_pelicula< node.getData().nombre_pelicula){ // si el nodo que viene es menor al nodo raiz 
+  
+            if(node.getIzquierda() == null){
+                node.setIzquierda(Nodo1); // si el nodo izquierda es nulo agregamos al primer nodo izquierda
+  
+            }else{
+              // de lo contrario hacemos lo siguiente
+                node.setIzquierda(this.add(Nodo1, node.getIzquierda())); //mandamos a llamar la misma funcion para ver si es derecha o izquierda
+  
+                if((this.getAltura2(node.getIzquierda()) - this.getAltura2(node.getDerecha())) == 2){
+  
+                    if(Nodo1.getData().nombre_pelicula < node.getIzquierda().getData().nombre_pelicula){
+                        newNode = this.rotacionizquierda(node);
+  
+                    }else{
+                        newNode = this.doblerotacionizquierda(node);
+  
+                    }
+  
+                }   
+            }
+        }else if(Nodo1.getData().nombre_pelicula > node.getData().nombre_pelicula){
+  
+            if(node.getDerecha() == null){
+                node.setDerecha(Nodo1);
+            }else{
+                node.setDerecha(this.add(Nodo1, node.getDerecha()));
+  
+                if((this.getAltura2(node.getDerecha()) - this.getAltura2(node.getIzquierda())) == 2){
+  
+                    if(Nodo1.getData().nombre_pelicula> node.getDerecha().getData().nombre_pelicula){
+                        newNode = this.rotacionderecha(node);
+  
+                    }else{
+                        newNode = this.doblerotacionderecha(node);
+  
+                    }
+                }
+            }
+        }else{
+  
+            console.log('Insercción fallida por duplicación');
+        }
+  
+  
+        if((node.getIzquierda() == null) && (node.getDerecha() != null)){
+  
+            node.setAltura(node.getDerecha().getAltura()+1);
+  
+        }else if((node.getIzquierda() != null) && (node.getDerecha() == null)){
+  
+            node.setAltura(node.getIzquierda().getAltura()+1);
+  
+        }else{
+  
+            node.setAltura(Math.max(this.getAltura2(node.getIzquierda()), this.getAltura2(node.getDerecha())) + 1);
+        }
+  
+        return newNode;
+  
+    }
+  
+      _add(data){
+  
+        let newNode = new NodoAVL2(data);
+        if(this.raiz == null){
+            this.raiz = newNode;
+        }else{
+            this.raiz = this.add(newNode, this.raiz);
+  
+        }
+  
+    }
+  
+    //Tours 
+    //Inorden
+    inorden(){
+  
+        if(this.raiz == null){
+  
+            console.log('No se ha insertado nada en el BSTree.');
+        }else{
+  
+            this._inorden(this.raiz);
+        }
+    }
+  
+    _inorden(node){
+  
+        if(node != null){
+  
+            this._inorden(node.getIzquierda());
+            console.log(node.getData() + ' ');
+            this._inorden(node.getDerecha());
+        }
+  
+    }
+  
+  
+    //Graphviz
+    graph1(idDiv){
+  
+        this.grapho = '';
+        this.grapho =         'digraph SimpleList{\nnode[shape= box, fillcolor="#FFFFFF", style= filled];\nbgcolor = "  #00ccff ";\nranksep = 0.5;\nnodesep = 0.5;\nsubgraph cluster_A{\nlabel = "Peliculas";\nbgcolor = "  #00ffad ";\nfontcolor ="black ";\nfontsize = 30;\n\n ';
+  
+        this.preordenGraph();
+  
+        this.grapho += '}\n}';
+  
+  
+        let id = '#'+idDiv;
+  
+        console.log(this.grapho)
+  
+        d3.select(id).graphviz()
+            .width(2000)
+            .height(1500)
+            .zoom(true)
+            .fit(true)
+            .renderDot(this.grapho)
+  
+  
+  
+    }
+  
+    preordenGraph(){
+  
+        if(this.raiz == null){
+  
+            console.log('No se ha insertado nada en el BSTree.');
+        }else{
+  
+            this._preordenGraph(this.raiz);
+        }
+    }
+  
+    _preordenGraph(node){
+  
+        if(node != null){
+  
+            if(node.getIzquierda() != null){
+  
+                this.grapho += node.getData().id_pelicula + '[label="' + node.getData().nombre_pelicula + '"];\n';
+                this.grapho += node.getIzquierda().getData().id_pelicula + '[label="' + node.getIzquierda().getData().nombre_pelicula + '"];\n';
+                this.grapho += node.getData().id_pelicula + ' -> ' + node.getIzquierda().getData().id_pelicula + ';\n';
+            }
+            if(node.getDerecha() != null){
+                
+                this.grapho += node.getData().id_pelicula + '[label="' + node.getData().nombre_pelicula + '"];\n';
+                this.grapho += node.getDerecha().getData().id_pelicula + '[label="' + node.getDerecha().getData().nombre_pelicula + '"];\n';
+                this.grapho += node.getData().id_pelicula + ' -> ' + node.getDerecha().getData().id_pelicula + '\n';
+            }
+            this._preordenGraph(node.getIzquierda());
+            this._preordenGraph(node.getDerecha());
+        }
+  
+  
+    }
+  
+    //inorden Cards
+  
+    inordenCard(idDiv){
+  
+        if(this.raiz == null){
+  
+            console.log('No se ha insertado nada en el BSTree.');
+        }else{
+  
+            this._inordenCard(this.raiz, idDiv);
+        }
+    }
+  
+    _inordenCard(node, idDiv){
+  
+        if(node != null){
+  
+            this._inordenCard(node.getIzquierda(), idDiv);
+            
+            //
+            let card = document.querySelector(idDiv);
+            
+  
+        
+            card.innerHTML += `
+  
+  
+            
+            <div class="plan-card">
+            <h2>${node.getData().nombre_pelicula}</h2>
+            <span id="${node.getData().id_pelicula}">${node.getData().descripcion}</span>
+            <div class="etiquet-price">
+                <p>${node.getData().precio_Q}</p>
+                <div></div>
+            </div>
+            <div class="benefits-list">
+                <ul>
+                    <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"></path>
+                        </svg><span onclick="alquilar('${node.getData().nombre_pelicula}')">Alquilar</span></li>
+                </ul>
+            </div>
+            <div class="button-get-plan">
+                <a href="#"  onclick="pelis('${node.getData().id_pelicula}','${node.getData().nombre_pelicula}','${node.getData().precio_Q}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
+                        <path d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z"></path>
+                    </svg>
+                    <span >INFORMACION</span>
+                </a>
+            </div>
+        </div>`;
+  
+            //console.log(node.getData() + ' ');
+  
+            //
+            this._inordenCard(node.getDerecha(), idDiv);
+        }
+  
+    }
+  
+    inordenCardR(idDiv){
+  
+        if(this.raiz == null){
+  
+            console.log('No se ha insertado nada en el BSTree.');
+        }else{
+  
+            this._inordenCardR(this.raiz, idDiv);
+        }
+    }
+  
+    _inordenCardR(node, idDiv){
+  
+        if(node != null){
+  
+            this._inordenCardR(node.getDerecha(), idDiv);
+  
+            //
+            let card = document.querySelector(idDiv);
+        
+            
+            card.innerHTML += `
+  
+  
+            
+            <div class="plan-card">
+            <h2>${node.getData().nombre_pelicula}</h2>
+            <span id="contenido11">${node.getData().descripcion}</span>
+            <div class="etiquet-price">
+                <p>${node.getData().precio_Q}</p>
+                <div></div>
+            </div>
+            <div class="benefits-list">
+                <ul>
+                    <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"></path>
+                            </svg><span onclick="alquilar('${node.getData().nombre_pelicula}')">Alquilar</span></li>
+                </ul>
+            </div>
+            <div class="button-get-plan">
+                <a href="#"  onclick="pelis('${node.getData().id_pelicula}','${node.getData().nombre_pelicula}','${node.getData().precio_Q}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
+                        <path d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z"></path>
+                    </svg>
+                    <span >INFORMACION</span>
+                </a>
+            </div>
+        </div>`;
+            //console.log(node.getData() + ' ');
+  
+  
+            this._inordenCardR(node.getIzquierda(), idDiv);
+        }
+  
+    }
+    addalquilar(name){
+        if(this.verificaralquiler(name)){
+            swal("error","La pelicula ya fue alquilada","error")
+            return false;
+      
+        }else{
+          const newNode = new alquilados(name,true)
+          if(this.head){
+       
+            newNode.next = this.head;
+            this.head.prev= newNode;
+            this.head = newNode;
+          }else{
+            this.head = newNode;
+            this.tail = newNode;
+          }
+          swal("Exito","La pelicula fue alquilada con exito","success");
+    
+        }
+
+
+
+          
+        }
+
+        verificaralquiler(name){
+            let current = this.head;
+            while(current != null){
+              if(current.pelicula == name){
+                return true;
+              }else{
+                current = current.next;
+              }
+            }
+            return false;
+        }
+
+    }
+  
+  
+  
+    
 
 
 
@@ -895,11 +1138,9 @@ class ArbolBinario{
       } else {
         let recorrido = this.head;
         while (recorrido) {
-            if (user == recorrido.username && passw == recorrido.password) {
-              document.getElementById("LOGIN-1").style.display = "none";
-              document.getElementById("PANTALLA-USUARIO").style.display = "block";
-              USUARIO = recorrido.name;
-              artistas.print_canciones(recorrido.name);
+            if (user == recorrido.username && passw == recorrido.contraseña) {
+              document.getElementById("VENTANA-USUARIO").style.display = "grid";
+              document.getElementById("LOGIN").style.display = "none";
             
               return "dato enocntrado";
             } else {
@@ -998,6 +1239,8 @@ const admin = {
 let clientes = new listaenlazada();
 let actors = new ArbolBinario();
 let peliculas = new ArbolAVL();
+let peliculas2 = new ArbolAVL2();
+
 let  graphviz =""
 let comentarios = [];
 
@@ -1101,6 +1344,20 @@ function downloadcliente(){
 
 
 }
+function donwloadpeliculas(){
+    html2canvas($('#showpeliculas')[0]).then(function (canvas) {
+        return Canvas2Image.saveAsPNG(canvas);
+        $(".response").append(canvas);
+    });
+
+}
+function donwloadactores(){
+    html2canvas($('#showactores')[0]).then(function (canvas) {
+        return Canvas2Image.saveAsPNG(canvas);
+        $(".response").append(canvas);
+    });
+
+}
 
 
 ///FUNCIONAMIENTOS ACTOres
@@ -1166,10 +1423,11 @@ function Cargar_peliculas(e) {
           let movie = _movies[i];
 
           peliculas._add(movie);
+          peliculas2._add(movie);
           
       }
 
-      // peliculas.inordenCard('#moviesUserA');
+  
       // peliculas.inordenCardR('#moviesUserD');
       
   }
@@ -1186,3 +1444,35 @@ function grafopeliculas(){
 
 }
 
+function movies2(){
+    document.getElementById("botones-asdes").style.display="grid";
+    document.getElementById("movies-container").style.display="flex";
+
+
+}
+function actors2(){
+    document.getElementById("botones-asdes").style.display="none";
+    document.getElementById("movies-container").style.display="none";
+}
+
+function pelis(id,nombre,precio){
+    document.getElementById("container").style.display="flex";
+    document.getElementById("movies-container").style.display="none";
+    document.getElementById("botones-asdes").style.display="none";
+    let x = document.getElementById(id).innerHTML
+    swal("error"," "+x,"success");
+}
+
+function mostraras(){
+    document.getElementById('movies-container').innerHTML=""
+    peliculas2.inordenCard('#movies-container');
+}
+function mostrardes(){
+    document.getElementById('movies-container').innerHTML=""
+    peliculas2.inordenCardR('#movies-container');
+}
+
+function alquilar(nombre){
+
+    peliculas2.addalquilar(nombre);
+}

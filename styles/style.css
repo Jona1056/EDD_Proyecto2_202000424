@@ -377,6 +377,75 @@ h3 {
   height: 40px;
   margin-left: 9%;
 }
+#ascender{
+  font-family: "Overpass", sans-serif;
+  font-size: 80%;
+  color: rgb(101, 54, 230);
+  width: 30%;
+  height: 40px;
+  margin-left: 9%;
+  margin-top:9%;
+  position: absolute;
+}
+#descender{
+  display:grid;
+  font-family: "Overpass", sans-serif;
+  font-size: 80%;
+  color: rgb(101, 54, 230);
+  width: 30%;
+  height: 40px;
+  margin-left: 54%;
+  position: absolute;
+  margin-top:9%;
+ 
+}
+#puntuacion{
+  display:grid;
+  font-family: "Overpass", sans-serif;
+  font-size: 80%;
+  color: rgb(101, 54, 230);
+  width: 35%;
+  height: 40px;
+  margin-left: 1%;
+
+
+ 
+}
+#alquilar{
+  display:grid;
+  font-family: "Overpass", sans-serif;
+  font-size: 80%;
+  color: rgb(101, 54, 230);
+  width: 40%;
+  height: 40px;
+  margin-left: 1%;
+
+
+
+ 
+ 
+}
+#comentar{
+  display:grid;
+  font-family: "Overpass", sans-serif;
+  font-size: 80%;
+  color: rgb(101, 54, 230);
+  width: 30%;
+  height: 40px;
+
+
+
+ 
+}
+
+#play{
+  font-family: "Overpass", sans-serif;
+  font-size: 80%;
+  color: white;
+  width: 30%;
+  height: 40px;
+  margin-left: 9%;
+}
 .FILEUSUARIOS{
     margin-top:8%;
     margin-left:9%;
@@ -386,12 +455,12 @@ h3 {
    margin-top:8%;
 }
 .FILECATEGORIAS{
-    margin-left:49%;
+    margin-left:69%;
     margin-top:8%;
 }
 
 .FILEACTORES{
-    margin-left:69%;
+    margin-left:49%;
     margin-top:8%;
 }
 .dowloandlist{
@@ -517,7 +586,8 @@ h3 {
 
 /*ANIMACION BOTON CARGAR GRAFICOS*/
 
-button {
+
+ button {
   position: relative;
   padding: 1em 1.8em;
   outline: none;
@@ -539,11 +609,11 @@ button:hover {
   transition-delay: 0.6s;
 }
 
-button span {
+  button span {
   position: absolute;
 }
 
-button span:nth-child(1) {
+  button span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -551,25 +621,25 @@ button span:nth-child(1) {
   background: linear-gradient(90deg, transparent, #00ccff);
 }
 
-button:hover span:nth-child(1) {
+  button:hover span:nth-child(1) {
   left: 100%;
   transition: 0.7s;
 }
 
-button span:nth-child(3) {
+ button span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
   height: 2px;
 }
 
-button:hover span:nth-child(3) {
+ button:hover span:nth-child(3) {
   right: 100%;
   transition: 0.7s;
   transition-delay: 0.35s;
 }
 
-button span:nth-child(2) {
+ button span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -583,7 +653,7 @@ button:hover span:nth-child(2) {
   transition-delay: 0.17s;
 }
 
-button span:nth-child(4) {
+ button span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
@@ -591,13 +661,13 @@ button span:nth-child(4) {
   border: none;
 }
 
-button:hover span:nth-child(4) {
+ button:hover span:nth-child(4) {
   bottom: 100%;
   transition: 0.7s;
   transition-delay: 0.52s;
 }
 
-button:active {
+ button:active {
   background: #ae00af;
   background: linear-gradient(to top right, #ae00af, #001eff);
   color: #bfbfbf;
@@ -605,7 +675,7 @@ button:active {
   transition: 0.1s;
 }
 
-button:active
+ button:active
   span:nth-child(1)
   span:nth-child(2)
   span:nth-child(2)
@@ -615,5 +685,453 @@ button:active
 }
 
 /*----------------------------------------------------*/
+#VENTANA-USUARIO{
+  display:none;
+}
 
+#botones-asdes{
+  display:grid;
+}
+
+#movies-container{
+
+
+
+  margin-top:12%;
+  margin-bottom: 10%;
+  border-radius: 10px;
+  border-style: solid;
+  display:flex;
+  float:left;
+  justify-content: left;
+
+  overflow-x: scroll;
+  border-top: none;
+  border-left: none;
+
+
+
+}
 /*---------------------------*/
+
+
+
+
+.plan-card {
+  background: #fff;
+  width: 15rem;
+  height: 35rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  border-bottom: 4px solid #000446;
+  box-shadow: 0 6px 30px rgba(207, 212, 222, 0.3);
+  font-family: "Poppins", sans-serif;
+  margin-top:1%;
+  margin-left:2%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+
+
+
+
+
+
+
+}
+
+.plan-card h2 {
+  margin-bottom: 15px;
+  font-size: 27px;
+  font-weight: 600;
+  
+
+}
+
+.plan-card h2 span {
+
+  margin-top: -4px;
+  color: #4d4d4d;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.etiquet-price {
+
+  background: #00ccff;
+  width: 14.46rem;
+  margin-left: -0.65rem;
+  padding: .2rem 1.2rem;
+  border-radius: 5px 0 0 5px;
+  margin-top:15px;
+}
+
+.etiquet-price p {
+  margin: 0;
+  padding-top: .4rem;
+  display: flex;
+  font-size: 1.9rem;
+  font-weight: 500;
+
+}
+
+.etiquet-price p:before {
+  content: "Q";
+  margin-right: 5px;
+
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.etiquet-price p:after {
+
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.etiquet-price div {
+  position: absolute;
+  bottom: -23px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border-top: 13px solid #c58102;
+  border-bottom: 10px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: -6;
+}
+
+.benefits-list {
+  margin-top: 16px;
+}
+
+.benefits-list ul {
+  padding: 0;
+  font-size: 14px;
+}
+
+.benefits-list ul li {
+  color: #4d4d4d;
+  list-style: none;
+  margin-bottom: .2rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.benefits-list ul li svg {
+  width: .9rem;
+  fill: currentColor;
+}
+
+.benefits-list ul li span {
+  font-weight: 300;
+}
+
+.button-get-plan {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+.button-get-plan a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000446;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button-get-plan a:hover {
+  transform: translateY(-3%);
+  box-shadow: 0 3px 10px rgba(207, 212, 222, 0.9);
+}
+
+.button-get-plan .svg-rocket {
+  margin-right: 10px;
+  width: .9rem;
+  fill: currentColor;
+}
+
+#container{
+	box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
+	background: rgba(255, 255, 255, 0.90);
+	text-align: center;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 5em auto;
+	height: 600px;
+	width: 1000px;
+  display:none;
+	
+}
+
+
+
+/* 	Product details  */
+.product-details {
+	position: relative;
+	text-align: left;
+	overflow: hidden;
+	padding: 30px;
+	height: 100%;
+	float: left;
+	width: 40%;
+
+}
+
+/* 	Product Name */
+#container .product-details h1{
+	font-family: 'Old Standard TT', serif;
+	display: inline-block;
+	position: relative;
+	font-size: 34px;
+	color: #344055;
+	margin: 0;
+	
+}
+
+#container .product-details h1:before{
+	position: absolute;
+	content: '';
+	right: -60%; 
+	top: 0%;
+	transform: translate(25px, -15px);
+	font-family: 'Farsan', cursive;
+	display: inline-block;
+	background: #00ccff;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 5px;
+	color: #FFF;
+	margin: 0;
+	animation: chan-sh 6s ease infinite;
+
+
+}
+
+
+@keyframes chan-sh {
+	from  {content: 'Pelicula recien añadida';}
+	to  {content: 'New';}
+	
+}
+
+/*Product Rating  */
+
+
+
+/* The most important information about the product */
+#container .product-details > p {
+	font-family: 'Farsan', cursive;
+	text-align: center;
+	font-size: 20px;
+	color: #7d7d7d;
+	
+}
+
+/* control */
+
+.control{
+	position: absolute;
+	bottom: 20%;
+	left: 22.8%;
+	
+}
+/* the Button */
+.btn {
+	transform: translateY(0px);
+	transition: 0.3s linear;
+	background: #49C608;
+	border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	color: #eee;
+	padding: 0;
+	margin: 0;
+	
+}
+
+.btn:hover{transform: translateY(-4px);}
+
+.btn span {
+	font-family: 'Farsan', cursive;
+	transition: transform 0.3s;
+	display: inline-block;
+  padding: 10px 20px;
+	font-size: 1.2em;
+	margin:0;
+	
+}
+/* shopping cart icon */
+.btn .price, .shopping-cart{
+	background: #333;
+	border: 0;
+	margin: 0;
+}
+
+.btn .price {
+	transform: translateX(-10%); padding-right: 15px;
+}
+
+/* the Icon */
+.btn .shopping-cart {
+	transform: translateX(-100%);
+  position: absolute;
+	background: #333;
+	z-index: 1;
+  left: 0;
+  top: 0;
+}
+
+/* buy */
+.btn .buy {z-index: 5; font-weight: bolder;}
+
+.btn:hover .price {transform: translateX(-110%);}
+
+.btn:hover .shopping-cart {transform: translateX(0%);}
+
+
+
+/* product image  */
+.product-image {
+	transition: all 0.3s ease-out;
+
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	float: left;
+	width: 50%;
+
+}
+
+#container img {width: 100%;height: 100%;}
+
+.info {
+    background: rgba(27, 26, 26, 0.9);
+    font-family: 'Farsan', cursive;
+    transition: all 0.3s ease-out;
+    transform: translateX(-100%);
+    position: absolute;
+    line-height: 1.9;
+    text-align: left;
+    font-size: 120%;
+    cursor: no-drop;
+    color: #FFF;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.info h2 {text-align: center}
+.product-image:hover .info{transform: translateX(0);}
+
+.info ul li{transition: 0.3s ease;}
+.info ul li:hover{transform: translateX(50px) scale(1.3);}
+
+.product-image:hover img {transition: all 0.3s ease-out;}
+.product-image:hover img {transform: scale(1.2, 1.2);}
+
+@import url('https://fonts.googleapis.com/css?family=Abel|Aguafina+Script|Artifika|Athiti|Condiment|Dosis|Droid+Serif|Farsan|Gurajada|Josefin+Sans|Lato|Lora|Merriweather|Noto+Serif|Open+Sans+Condensed:300|Playfair+Display|Rasa|Sahitya|Share+Tech|Text+Me+One|Titillium+Web');
+
+
+ #product-detailsbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 10px;
+  color: white;
+  text-shadow: 2px 2px rgb(116, 116, 116);
+  text-transform: uppercase;
+  border: solid 2px black;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 17px;
+  background-color: hsl(49deg 98% 60%);
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: all .5s ease;
+  width: 300px;
+  height: 200px;
+}
+
+#product-details button:active {
+  transform: scale(.9);
+  transition: all 100ms ease;
+}
+
+#product-details button svg {
+  transition: all .5s ease;
+  z-index: 2;
+}
+
+.play {
+  transition: all .5s ease;
+  transition-delay: 300ms;
+}
+
+#product-details button:hover svg {
+  transform: scale(3) translate(50%);
+}
+
+.now {
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%);
+  transition: all .5s ease;
+  z-index: 2;
+}
+
+#product-details button:hover .now {
+  transform: translateX(10px);
+  transition-delay: 300ms;
+}
+
+#product-details button:hover .play {
+  transform: translateX(200%);
+  transition-delay: 300ms;
+}
+
+.input {
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  border-radius: 89% 29% 90% 23% / 0% 100% 0% 100%;
+  border-color: transparent;
+  width: 160px;
+  height: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 500;
+  font-family: inherit;
+  box-shadow: 23px 23px 46px #bebebe,
+             -23px -23px 46px #ffffff;
+  margin-left:200px;
+  margin-top:-30px;
+}
+
+.input::placeholder {
+  color: black;
+}
