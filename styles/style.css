@@ -859,7 +859,7 @@ button:hover span:nth-child(2) {
 
 .button-get-plan .svg-rocket {
   margin-right: 10px;
-  width: .9rem;
+  width: 1.9rem;
   fill: currentColor;
 }
 
@@ -868,27 +868,42 @@ button:hover span:nth-child(2) {
 	background: rgba(255, 255, 255, 0.90);
 	text-align: center;
 	border-radius: 5px;
-	overflow: hidden;
+
+
 	margin: 5em auto;
 	height: 600px;
 	width: 1000px;
   display:none;
+  
+
 	
 }
+#container .button-get-plan{
+  margin-left:-250px;
+  display: flex;
+
+
+
+
+}
+
 
 
 
 /* 	Product details  */
 .product-details {
 	position: relative;
-	text-align: left;
+	text-align: center;
 	overflow: hidden;
 	padding: 30px;
-	height: 100%;
+	height:auto;
 	float: left;
-	width: 40%;
+	width: 50%;
+  overflow-y:scroll;
+
 
 }
+
 
 /* 	Product Name */
 #container .product-details h1{
@@ -898,6 +913,16 @@ button:hover span:nth-child(2) {
 	font-size: 34px;
 	color: #344055;
 	margin: 0;
+	
+}
+#container .product-details h2{
+	font-family: 'Old Standard TT', serif;
+	display: inline-block;
+	position: relative;
+	font-size: 34px;
+	color: #344055;
+	margin: 0;
+  margin-top: 20px;
 	
 }
 
@@ -962,6 +987,7 @@ button:hover span:nth-child(2) {
 	color: #eee;
 	padding: 0;
 	margin: 0;
+
 	
 }
 
@@ -1013,8 +1039,9 @@ button:hover span:nth-child(2) {
 	position: relative;
 	overflow: hidden;
 	height: 100%;
-	float: left;
-	width: 50%;
+	float: right;
+	width: 55%;
+
 
 }
 
@@ -1108,13 +1135,13 @@ button:hover span:nth-child(2) {
   transition-delay: 300ms;
 }
 
-.input {
+/* .input { */
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+  /* background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+  /* background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); */
  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   border-radius: 89% 29% 90% 23% / 0% 100% 0% 100%;
   border-color: transparent;
   width: 160px;
@@ -1134,4 +1161,35 @@ button:hover span:nth-child(2) {
 
 .input::placeholder {
   color: black;
+} */
+.input {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-weight: 500;
+  font-size: .8vw;
+  color: #fff;
+  background-color: rgb(28,28,30);
+  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+
+  transition: .4s;
+  height:30px ;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left:200px;
+  margin-top:-48px;
 }
+
+.input:hover {
+  box-shadow: 0 0 0 .35vw rgba(135, 207, 235, 0.186);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 .20vw #00ccff;
+}
+
