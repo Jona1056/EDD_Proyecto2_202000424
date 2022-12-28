@@ -1178,12 +1178,12 @@ class ArbolBinario{
   //Inorden
   inordenCard(idDiv){
 
-      if(this.root == null){
+      if(this.head == null){
 
           console.log('No se ha insertado nada en el BSTree.');
       }else{
 
-          this._inordenCard(this.root, idDiv);
+          this._inordenCard(this.head, idDiv);
       }
   }
 
@@ -1200,22 +1200,36 @@ class ArbolBinario{
 
           let newDiv = document.createElement("div");
           card.innerHTML += `
-          <div class="card" id="cardsActorsUser">
-              <div class="card-body">
-
-                  <div id="movieName">
-                      <img src="https://cdn-icons-png.flaticon.com/512/475/475283.png" id="imageP">
-                      <h4>${node.getData().nombre_actor}</h4>
-
-                  </div>  
-
-                  <div id="description">
-                      <h5 class="card-title">Descripción</h5>
-                      <p class="card-text">${node.getData().descripcion}</p>
-
-                  </div>
-              </div>
-          </div>`;
+          <div class="card-client">
+          <div class="user-picture">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+              </svg>
+          </div>
+          <p class="name-client"> ${node.getContenido().nombre_actor}
+                <span>${node.getContenido().descripcion}</span> 
+   
+       
+            
+      
+          </p>
+          <div class="social-media">
+              <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M8.749,9.934c0,0.247-0.202,0.449-0.449,0.449H4.257c-0.247,0-0.449-0.202-0.449-0.449S4.01,9.484,4.257,9.484H8.3C8.547,9.484,8.749,9.687,8.749,9.934 M7.402,12.627H4.257c-0.247,0-0.449,0.202-0.449,0.449s0.202,0.449,0.449,0.449h3.145c0.247,0,0.449-0.202,0.449-0.449S7.648,12.627,7.402,12.627 M8.3,6.339H4.257c-0.247,0-0.449,0.202-0.449,0.449c0,0.247,0.202,0.449,0.449,0.449H8.3c0.247,0,0.449-0.202,0.449-0.449C8.749,6.541,8.547,6.339,8.3,6.339 M18.631,4.543v10.78c0,0.248-0.202,0.45-0.449,0.45H2.011c-0.247,0-0.449-0.202-0.449-0.45V4.543c0-0.247,0.202-0.449,0.449-0.449h16.17C18.429,4.094,18.631,4.296,18.631,4.543 M17.732,4.993H2.46v9.882h15.272V4.993z M16.371,13.078c0,0.247-0.202,0.449-0.449,0.449H9.646c-0.247,0-0.449-0.202-0.449-0.449c0-1.479,0.883-2.747,2.162-3.299c-0.434-0.418-0.714-1.008-0.714-1.642c0-1.197,0.997-2.246,2.133-2.246s2.134,1.049,2.134,2.246c0,0.634-0.28,1.224-0.714,1.642C15.475,10.331,16.371,11.6,16.371,13.078M11.542,8.137c0,0.622,0.539,1.348,1.235,1.348s1.235-0.726,1.235-1.348c0-0.622-0.539-1.348-1.235-1.348S11.542,7.515,11.542,8.137 M15.435,12.629c-0.214-1.273-1.323-2.246-2.657-2.246s-2.431,0.973-2.644,2.246H15.435z"></path>
+                  </svg>
+                  <span class="tooltip-social">${node.getContenido().dni}</span>
+              </a>
+              <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M8.937,10.603c-0.383-0.284-0.741-0.706-0.754-0.837c0-0.223,0-0.326,0.526-0.758c0.684-0.56,1.062-1.297,1.062-2.076c0-0.672-0.188-1.273-0.512-1.71h0.286l1.58-1.196h-4.28c-1.717,0-3.222,1.348-3.222,2.885c0,1.587,1.162,2.794,2.726,2.858c-0.024,0.113-0.037,0.225-0.037,0.334c0,0.229,0.052,0.448,0.157,0.659c-1.938,0.013-3.569,1.309-3.569,2.84c0,1.375,1.571,2.373,3.735,2.373c2.338,0,3.599-1.463,3.599-2.84C10.233,11.99,9.882,11.303,8.937,10.603 M5.443,6.864C5.371,6.291,5.491,5.761,5.766,5.444c0.167-0.192,0.383-0.293,0.623-0.293l0,0h0.028c0.717,0.022,1.405,0.871,1.532,1.89c0.073,0.583-0.052,1.127-0.333,1.451c-0.167,0.192-0.378,0.293-0.64,0.292h0C6.273,8.765,5.571,7.883,5.443,6.864 M6.628,14.786c-1.066,0-1.902-0.687-1.902-1.562c0-0.803,0.978-1.508,2.093-1.508l0,0l0,0h0.029c0.241,0.003,0.474,0.04,0.695,0.109l0.221,0.158c0.567,0.405,0.866,0.634,0.956,1.003c0.022,0.097,0.033,0.194,0.033,0.291C8.752,14.278,8.038,14.786,6.628,14.786 M14.85,4.765h-1.493v2.242h-2.249v1.495h2.249v2.233h1.493V8.502h2.252V7.007H14.85V4.765z"></path>
+                  </svg>
+                  <span class="tooltip-social">${node.getContenido().correo}</span>
+              </a>
+             
+             
+          </div>
+      </div>`;
 
           //
 
@@ -1227,12 +1241,12 @@ class ArbolBinario{
   //Preorden
   preordenCard(idDiv){
 
-      if(this.root == null){
+      if(this.head == null){
 
           console.log('No se ha insertado nada en el BSTree.');
       }else{
 
-          this._preordenCard(this.root, idDiv);
+          this._preordenCard(this.head, idDiv);
       }
   }
 
@@ -1247,22 +1261,36 @@ class ArbolBinario{
 
           let newDiv = document.createElement("div");
           card.innerHTML += `
-          <div class="card" id="cardsActorsUser">
-              <div class="card-body">
-
-                  <div id="movieName">
-                      <img src="https://cdn-icons-png.flaticon.com/512/475/475283.png" id="imageP">
-                      <h4>${node.getData().nombre_actor}</h4>
-
-                  </div>  
-
-                  <div id="description">
-                      <h5 class="card-title">Descripción</h5>
-                      <p class="card-text">${node.getData().descripcion}</p>
-
-                  </div>
-              </div>
-          </div>`;
+          <div class="card-client">
+          <div class="user-picture">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+              </svg>
+          </div>
+          <p class="name-client"> ${node.getContenido().nombre_actor}
+                <span>${node.getContenido().descripcion}</span> 
+   
+       
+            
+      
+          </p>
+          <div class="social-media">
+              <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M8.749,9.934c0,0.247-0.202,0.449-0.449,0.449H4.257c-0.247,0-0.449-0.202-0.449-0.449S4.01,9.484,4.257,9.484H8.3C8.547,9.484,8.749,9.687,8.749,9.934 M7.402,12.627H4.257c-0.247,0-0.449,0.202-0.449,0.449s0.202,0.449,0.449,0.449h3.145c0.247,0,0.449-0.202,0.449-0.449S7.648,12.627,7.402,12.627 M8.3,6.339H4.257c-0.247,0-0.449,0.202-0.449,0.449c0,0.247,0.202,0.449,0.449,0.449H8.3c0.247,0,0.449-0.202,0.449-0.449C8.749,6.541,8.547,6.339,8.3,6.339 M18.631,4.543v10.78c0,0.248-0.202,0.45-0.449,0.45H2.011c-0.247,0-0.449-0.202-0.449-0.45V4.543c0-0.247,0.202-0.449,0.449-0.449h16.17C18.429,4.094,18.631,4.296,18.631,4.543 M17.732,4.993H2.46v9.882h15.272V4.993z M16.371,13.078c0,0.247-0.202,0.449-0.449,0.449H9.646c-0.247,0-0.449-0.202-0.449-0.449c0-1.479,0.883-2.747,2.162-3.299c-0.434-0.418-0.714-1.008-0.714-1.642c0-1.197,0.997-2.246,2.133-2.246s2.134,1.049,2.134,2.246c0,0.634-0.28,1.224-0.714,1.642C15.475,10.331,16.371,11.6,16.371,13.078M11.542,8.137c0,0.622,0.539,1.348,1.235,1.348s1.235-0.726,1.235-1.348c0-0.622-0.539-1.348-1.235-1.348S11.542,7.515,11.542,8.137 M15.435,12.629c-0.214-1.273-1.323-2.246-2.657-2.246s-2.431,0.973-2.644,2.246H15.435z"></path>
+                  </svg>
+                  <span class="tooltip-social">${node.getContenido().dni}</span>
+              </a>
+              <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M8.937,10.603c-0.383-0.284-0.741-0.706-0.754-0.837c0-0.223,0-0.326,0.526-0.758c0.684-0.56,1.062-1.297,1.062-2.076c0-0.672-0.188-1.273-0.512-1.71h0.286l1.58-1.196h-4.28c-1.717,0-3.222,1.348-3.222,2.885c0,1.587,1.162,2.794,2.726,2.858c-0.024,0.113-0.037,0.225-0.037,0.334c0,0.229,0.052,0.448,0.157,0.659c-1.938,0.013-3.569,1.309-3.569,2.84c0,1.375,1.571,2.373,3.735,2.373c2.338,0,3.599-1.463,3.599-2.84C10.233,11.99,9.882,11.303,8.937,10.603 M5.443,6.864C5.371,6.291,5.491,5.761,5.766,5.444c0.167-0.192,0.383-0.293,0.623-0.293l0,0h0.028c0.717,0.022,1.405,0.871,1.532,1.89c0.073,0.583-0.052,1.127-0.333,1.451c-0.167,0.192-0.378,0.293-0.64,0.292h0C6.273,8.765,5.571,7.883,5.443,6.864 M6.628,14.786c-1.066,0-1.902-0.687-1.902-1.562c0-0.803,0.978-1.508,2.093-1.508l0,0l0,0h0.029c0.241,0.003,0.474,0.04,0.695,0.109l0.221,0.158c0.567,0.405,0.866,0.634,0.956,1.003c0.022,0.097,0.033,0.194,0.033,0.291C8.752,14.278,8.038,14.786,6.628,14.786 M14.85,4.765h-1.493v2.242h-2.249v1.495h2.249v2.233h1.493V8.502h2.252V7.007H14.85V4.765z"></path>
+                  </svg>
+                  <span class="tooltip-social">${node.getContenido().correo}</span>
+              </a>
+             
+             
+          </div>
+      </div>`;
 
           //
           this._preordenCard(node.getLeft(), idDiv);
@@ -1275,12 +1303,12 @@ class ArbolBinario{
   //PostOrden
   postordenCard(idDiv){
 
-      if(this.root == null){
+      if(this.head== null){
 
           console.log('No se ha insertado nada en el BSTree.');
       }else{
 
-          this._postordenCard(this.root, idDiv);
+          this._postordenCard(this.head, idDiv);
       }
   }
 
@@ -1297,22 +1325,36 @@ class ArbolBinario{
 
           let newDiv = document.createElement("div");
           card.innerHTML += `
-          <div class="card" id="cardsActorsUser">
-              <div class="card-body">
-
-                  <div id="movieName">
-                      <img src="https://cdn-icons-png.flaticon.com/512/475/475283.png" id="imageP">
-                      <h4>${node.getData().nombre_actor}</h4>
-
-                  </div>  
-
-                  <div id="description">
-                      <h5 class="card-title">Descripción</h5>
-                      <p class="card-text">${node.getData().descripcion}</p>
-
-                  </div>
-              </div>
-          </div>`;
+          <div class="card-client">
+          <div class="user-picture">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+              </svg>
+          </div>
+          <p class="name-client"> ${node.getContenido().nombre_actor}
+                <span>${node.getContenido().descripcion}</span> 
+   
+       
+            
+      
+          </p>
+          <div class="social-media">
+              <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M8.749,9.934c0,0.247-0.202,0.449-0.449,0.449H4.257c-0.247,0-0.449-0.202-0.449-0.449S4.01,9.484,4.257,9.484H8.3C8.547,9.484,8.749,9.687,8.749,9.934 M7.402,12.627H4.257c-0.247,0-0.449,0.202-0.449,0.449s0.202,0.449,0.449,0.449h3.145c0.247,0,0.449-0.202,0.449-0.449S7.648,12.627,7.402,12.627 M8.3,6.339H4.257c-0.247,0-0.449,0.202-0.449,0.449c0,0.247,0.202,0.449,0.449,0.449H8.3c0.247,0,0.449-0.202,0.449-0.449C8.749,6.541,8.547,6.339,8.3,6.339 M18.631,4.543v10.78c0,0.248-0.202,0.45-0.449,0.45H2.011c-0.247,0-0.449-0.202-0.449-0.45V4.543c0-0.247,0.202-0.449,0.449-0.449h16.17C18.429,4.094,18.631,4.296,18.631,4.543 M17.732,4.993H2.46v9.882h15.272V4.993z M16.371,13.078c0,0.247-0.202,0.449-0.449,0.449H9.646c-0.247,0-0.449-0.202-0.449-0.449c0-1.479,0.883-2.747,2.162-3.299c-0.434-0.418-0.714-1.008-0.714-1.642c0-1.197,0.997-2.246,2.133-2.246s2.134,1.049,2.134,2.246c0,0.634-0.28,1.224-0.714,1.642C15.475,10.331,16.371,11.6,16.371,13.078M11.542,8.137c0,0.622,0.539,1.348,1.235,1.348s1.235-0.726,1.235-1.348c0-0.622-0.539-1.348-1.235-1.348S11.542,7.515,11.542,8.137 M15.435,12.629c-0.214-1.273-1.323-2.246-2.657-2.246s-2.431,0.973-2.644,2.246H15.435z"></path>
+                  </svg>
+                  <span class="tooltip-social">${node.getContenido().dni}</span>
+              </a>
+              <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M8.937,10.603c-0.383-0.284-0.741-0.706-0.754-0.837c0-0.223,0-0.326,0.526-0.758c0.684-0.56,1.062-1.297,1.062-2.076c0-0.672-0.188-1.273-0.512-1.71h0.286l1.58-1.196h-4.28c-1.717,0-3.222,1.348-3.222,2.885c0,1.587,1.162,2.794,2.726,2.858c-0.024,0.113-0.037,0.225-0.037,0.334c0,0.229,0.052,0.448,0.157,0.659c-1.938,0.013-3.569,1.309-3.569,2.84c0,1.375,1.571,2.373,3.735,2.373c2.338,0,3.599-1.463,3.599-2.84C10.233,11.99,9.882,11.303,8.937,10.603 M5.443,6.864C5.371,6.291,5.491,5.761,5.766,5.444c0.167-0.192,0.383-0.293,0.623-0.293l0,0h0.028c0.717,0.022,1.405,0.871,1.532,1.89c0.073,0.583-0.052,1.127-0.333,1.451c-0.167,0.192-0.378,0.293-0.64,0.292h0C6.273,8.765,5.571,7.883,5.443,6.864 M6.628,14.786c-1.066,0-1.902-0.687-1.902-1.562c0-0.803,0.978-1.508,2.093-1.508l0,0l0,0h0.029c0.241,0.003,0.474,0.04,0.695,0.109l0.221,0.158c0.567,0.405,0.866,0.634,0.956,1.003c0.022,0.097,0.033,0.194,0.033,0.291C8.752,14.278,8.038,14.786,6.628,14.786 M14.85,4.765h-1.493v2.242h-2.249v1.495h2.249v2.233h1.493V8.502h2.252V7.007H14.85V4.765z"></path>
+                  </svg>
+                  <span class="tooltip-social">${node.getContenido().correo}</span>
+              </a>
+             
+             
+          </div>
+      </div>`;
 
           //
           
@@ -1685,6 +1727,8 @@ function movies2(){
     document.getElementById("container").style.display="none";
     document.getElementById("botones-asdes").style.display="grid";
     document.getElementById("movies-container").style.display="flex";
+    document.getElementById("actors-container").style.display="none";
+    document.getElementById("botonsinor").style.display="none";
    
 
 
@@ -1692,13 +1736,18 @@ function movies2(){
 function actors2(){
     document.getElementById("botones-asdes").style.display="none";
     document.getElementById("movies-container").style.display="none";
+    document.getElementById("actors-container").style.display="flex";
     document.getElementById("container").style.display="none";
+    document.getElementById("botonsinor").style.display="block";
+    
 }
 
 function pelis(id,nombre,precio){
     document.getElementById("container").style.display="flex";
     document.getElementById("movies-container").style.display="none";
     document.getElementById("botones-asdes").style.display="none";
+    document.getElementById("actors-container").style.display="none";
+    document.getElementById("botonsinor").style.display="none";
     let x = document.getElementById(id).innerHTML
     document.getElementById("container").innerHTML = ""
     peliculas2.Card1(id,nombre,precio,x,"#container")
@@ -1748,4 +1797,18 @@ function comen(nombre,id,precio){
     document.getElementById("nuevoComentario").value = ""
 
  
+}
+
+function inorden12(){
+    document.getElementById("actors-container").innerHTML = ""
+    actors.inordenCard("#actors-container")
+}
+function preorden12(){
+    document.getElementById("actors-container").innerHTML = ""
+    actors.preordenCard("#actors-container");
+
+}
+function postorden12(){
+    document.getElementById("actors-container").innerHTML = ""
+    actors.postordenCard("#actors-container")
 }
