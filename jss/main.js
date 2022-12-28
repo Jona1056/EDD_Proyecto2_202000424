@@ -38,9 +38,9 @@ function Back2(){
 
 }
 class comentario{
-    constructor(pelicula,comentario1){
+    constructor(usuario,comentario1){
         
-        this.pelicula = pelicula;
+        this.usuario = usuario;
         this.comentario1 = comentario1;
         this.next = null;
     }
@@ -310,6 +310,16 @@ class alquilados{
 
     }
 }
+class star{
+    constructor(pelicula){
+        this.pelicula = pelicula;
+        this.estrellas = 0;
+        this.comentario = new comentario();
+        this.next = null;
+        this.prev = null;
+
+    }
+}
 class NodoAVL2{
 
     constructor(data){
@@ -318,8 +328,9 @@ class NodoAVL2{
         this.altura = 0;
         this.izquierda = null;
         this.derecha = null;
-        this.comentario = new comentario();
+     
         this.next = null;
+        this.puntuacion = 0;
     
     }
   
@@ -327,6 +338,9 @@ class NodoAVL2{
     getData(){
   
         return this.data;
+    }
+    getPuntuacion(){
+        return this.puntuacion;
     }
   
     getIzquierda(){
@@ -348,6 +362,9 @@ class NodoAVL2{
     setData(data){
   
         this.data = data;
+    }
+    setPuntuacion(punteo){
+        this.puntuacion = punteo;
     }
   
     setIzquierda(izquierda){
@@ -375,6 +392,8 @@ class NodoAVL2{
         this.grapho = ''
         this.head = null;
         this.tail = null;
+        this.star1 = null;
+        this.star2 = null;
     }
   
     //search
@@ -385,17 +404,19 @@ class NodoAVL2{
             console.log('no se ha insertado nada en el AVLTree.')
   
             return null;
-        }else if(data < this.raiz.getData().id_pelicula){
+        }else if(data < this.raiz.getData().nombre_pelicula){
   
-            return this._search(data, this.raiz.getLeft());
-        }else if(data > this.raiz.getData().id_pelicula){
+            return this._search(data, this.raiz.getIzquierda());
+        }else if(data > this.raiz.getData().nombre_pelicula){
   
-            return this._search(data, this.raiz.getRight());
+            return this._search(data, this.raiz.getDerecha());
         }else{
   
-            console.log(data + this.raiz.getData().id_pelicula);
+            console.log(data + this.raiz.getData().nombre_pelicula);
             console.log('Si esta retornando dato');
+          
             return this.raiz.getData();
+            
         }
   
     }
@@ -403,11 +424,11 @@ class NodoAVL2{
     _search(data, node){
   
         
-        if(data < node.getData().id_pelicula){
-            return this._search(data, node.getLeft());
+        if(data < node.getData().nombre_pelicula){
+            return this._search(data, node.getIzquierda());
   
-        }else if(data > node.getData().id_pelicula){
-            return this._search(data, node.getRight());
+        }else if(data > node.getData().nombre_pelicula){
+            return this._search(data, node.getDerecha());
   
         }else if(node == null){
             return  null;
@@ -667,17 +688,18 @@ class NodoAVL2{
                 <p>${node.getData().precio_Q}</p>
                 <div></div>
             </div>
-            <div class="benefits-list">
-                <ul>
-                    <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"></path>
-                        </svg><span onclick="alquilar('${node.getData().nombre_pelicula}')">Alquilar</span></li>
-                </ul>
-            </div>
+            <div class="button-get-plan">
+            <a id="alq" href="#"  onclick="alquilar('${node.getData().nombre_pelicula}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="svg-rocket">
+                    <path d="M18.641,4.818H1.444c-0.475,0-0.86,0.385-0.86,0.86v8.6c0,0.474,0.385,0.859,0.86,0.859h17.197c0.475,0,0.859-0.386,0.859-0.859v-8.6C19.5,5.203,19.115,4.818,18.641,4.818 M1.874,5.678c0.237,0,0.43,0.192,0.43,0.431c0,0.237-0.193,0.43-0.43,0.43c-0.238,0-0.43-0.192-0.43-0.43C1.444,5.87,1.636,5.678,1.874,5.678 M1.874,14.277c-0.238,0-0.43-0.193-0.43-0.431s0.192-0.43,0.43-0.43c0.237,0,0.43,0.192,0.43,0.43S2.111,14.277,1.874,14.277 M18.21,14.277c-0.237,0-0.43-0.193-0.43-0.431s0.192-0.43,0.43-0.43c0.238,0,0.431,0.192,0.431,0.43S18.448,14.277,18.21,14.277 M18.641,12.636c-0.135-0.048-0.279-0.079-0.431-0.079c-0.712,0-1.289,0.578-1.289,1.29c0,0.151,0.03,0.295,0.078,0.431H3.084c0.048-0.136,0.079-0.279,0.079-0.431c0-0.712-0.578-1.29-1.29-1.29c-0.152,0-0.295,0.031-0.43,0.079V7.319c0.135,0.048,0.278,0.08,0.43,0.08c0.711,0,1.29-0.578,1.29-1.29c0-0.152-0.031-0.295-0.079-0.431h13.915c-0.048,0.136-0.078,0.279-0.078,0.431c0,0.712,0.577,1.29,1.289,1.29c0.151,0,0.296-0.031,0.431-0.08V12.636z M18.21,6.538c-0.237,0-0.43-0.192-0.43-0.43c0-0.238,0.192-0.431,0.43-0.431c0.238,0,0.431,0.192,0.431,0.431C18.641,6.346,18.448,6.538,18.21,6.538 M15.631,12.557h-0.86c-0.236,0-0.43,0.193-0.43,0.431s0.193,0.43,0.43,0.43h0.86c0.238,0,0.43-0.192,0.43-0.43S15.869,12.557,15.631,12.557 M5.313,6.538h-0.86c-0.237,0-0.43,0.192-0.43,0.43c0,0.237,0.193,0.43,0.43,0.43h0.86c0.237,0,0.43-0.193,0.43-0.43C5.743,6.73,5.55,6.538,5.313,6.538 M10.042,6.538c-1.899,0-3.439,1.54-3.439,3.439c0,1.9,1.54,3.44,3.439,3.44s3.439-1.54,3.439-3.44C13.481,8.078,11.941,6.538,10.042,6.538M10.969,9.359l-0.164,0.379H9.26C9.256,9.758,9.254,9.785,9.254,9.82v0.136c0,0.103,0.002,0.164,0.006,0.184h1.456l-0.158,0.373H9.292c0.05,0.319,0.157,0.57,0.321,0.751c0.189,0.224,0.446,0.336,0.77,0.336c0.21,0,0.384-0.03,0.523-0.094c0.126-0.06,0.269-0.158,0.428-0.296v0.656c-0.285,0.174-0.603,0.261-0.951,0.261c-0.563,0-1.003-0.162-1.318-0.484c-0.273-0.28-0.443-0.657-0.511-1.13H8.068l0.17-0.373h0.284c-0.004-0.027-0.007-0.057-0.009-0.088C8.511,10.02,8.51,9.986,8.51,9.951c0-0.027,0-0.059,0.003-0.094C8.515,9.82,8.518,9.781,8.522,9.738H8.068l0.165-0.379h0.333C8.671,8.906,8.863,8.547,9.14,8.283c0.324-0.304,0.737-0.456,1.243-0.456c0.365,0,0.74,0.123,1.122,0.367l-0.29,0.538c-0.269-0.252-0.563-0.378-0.883-0.378c-0.282,0-0.517,0.104-0.706,0.313c-0.16,0.185-0.267,0.416-0.322,0.691H10.969z"></path>
+                </svg>
+                <span >Alquilar</span>
+            </a>
+        </div>
             <div class="button-get-plan">
                 <a href="#"  onclick="pelis('${node.getData().id_pelicula}','${node.getData().nombre_pelicula}','${node.getData().precio_Q}')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
-                        <path d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="svg-rocket">
+                        <path d="M4.317,16.411c-1.423-1.423-1.423-3.737,0-5.16l8.075-7.984c0.994-0.996,2.613-0.996,3.611,0.001C17,4.264,17,5.884,16.004,6.88l-8.075,7.984c-0.568,0.568-1.493,0.569-2.063-0.001c-0.569-0.569-0.569-1.495,0-2.064L9.93,8.828c0.145-0.141,0.376-0.139,0.517,0.005c0.141,0.144,0.139,0.375-0.006,0.516l-4.062,3.968c-0.282,0.282-0.282,0.745,0.003,1.03c0.285,0.284,0.747,0.284,1.032,0l8.074-7.985c0.711-0.71,0.711-1.868-0.002-2.579c-0.711-0.712-1.867-0.712-2.58,0l-8.074,7.984c-1.137,1.137-1.137,2.988,0.001,4.127c1.14,1.14,2.989,1.14,4.129,0l6.989-6.896c0.143-0.142,0.375-0.14,0.516,0.003c0.143,0.143,0.141,0.374-0.002,0.516l-6.988,6.895C8.054,17.836,5.743,17.836,4.317,16.411"></path>
                     </svg>
                     <span >INFORMACION</span>
                 </a>
@@ -690,6 +712,218 @@ class NodoAVL2{
             this._inordenCard(node.getDerecha(), idDiv);
         }
   
+    }
+    addcomen(nombre,comentario1,USUARIO33) {
+   
+        let temporalcabeza = this.star1;
+        
+       
+        while(temporalcabeza != null){
+         
+         if(temporalcabeza.pelicula == nombre){
+          var nuevacancion = new comentario(USUARIO33,comentario1);
+          var iniciocanciones = temporalcabeza.comentario;
+         
+          temporalcabeza.comentario = nuevacancion;
+        
+          nuevacancion.next= iniciocanciones;
+      
+         }
+         temporalcabeza = temporalcabeza.next;  
+        }
+    
+    
+      
+    }
+    setcoment(name){
+        let current = this.star1;
+        while(current){
+            if(current.pelicula==name){
+                let current2 = current.comentario
+                while(current2.next){
+                    document.getElementById('comentarios').innerHTML += `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20 " class="svg-rocket">
+                    <path d="M12.075,10.812c1.358-0.853,2.242-2.507,2.242-4.037c0-2.181-1.795-4.618-4.198-4.618S5.921,4.594,5.921,6.775c0,1.53,0.884,3.185,2.242,4.037c-3.222,0.865-5.6,3.807-5.6,7.298c0,0.23,0.189,0.42,0.42,0.42h14.273c0.23,0,0.42-0.189,0.42-0.42C17.676,14.619,15.297,11.677,12.075,10.812 M6.761,6.775c0-2.162,1.773-3.778,3.358-3.778s3.359,1.616,3.359,3.778c0,2.162-1.774,3.778-3.359,3.778S6.761,8.937,6.761,6.775 M3.415,17.69c0.218-3.51,3.142-6.297,6.704-6.297c3.562,0,6.486,2.787,6.705,6.297H3.415z"></path>
+                </=>
+                         <p>USUARIO:  ${current2.usuario}</p>
+                         <li class="comentarios">${current2.comentario1}</li>
+                    
+                    `;
+                    current2 = current2.next
+
+                }
+            }
+            current = current.next
+        }
+
+    }
+
+ 
+    addstars(name){
+        if(this.verificarstars(name)){
+            
+      
+        }else{
+          const newNode = new star(name)
+          
+          if(this.star1){
+       
+            newNode.next = this.star1;
+            this.star1.prev= newNode;
+            this.star1 = newNode;
+          }else{
+            this.star1 = newNode;
+            this.star2 = newNode;
+          }
+    
+    
+        }
+
+
+
+          
+        }
+    setStar(name,star){
+        let current = this.star1;
+        while(current != null){
+            if(current.pelicula == name){
+                if(star == 0){
+                    current.estrellas = star
+                    document.getElementById('stars').innerHTML = '✰✰✰✰✰';
+                    return true;
+                }else if(star == 1){
+                    current.estrellas = star
+                    document.getElementById('stars').innerHTML = '⭐✰✰✰✰';
+                    return true;
+                }else if(star == 2){
+                    current.estrellas = star
+                    document.getElementById('stars').innerHTML = '⭐⭐✰✰✰';
+                    return true;
+                }else if(star == 3){
+                    current.estrellas = star
+                    document.getElementById('stars').innerHTML = '⭐⭐⭐✰✰';
+                    return true;
+                }else if(star== 4){
+                    current.estrellas = star
+                    document.getElementById('stars').innerHTML = '⭐⭐⭐⭐✰';
+                    return true;
+                }else if(star == 5){
+                    current.estrellas = star
+                    document.getElementById('stars').innerHTML = '⭐⭐⭐⭐⭐';
+                    return true;
+                }else{
+                    document.getElementById('stars').innerHTML = '✰✰✰✰✰';
+                    return true;
+                }
+            }else{
+                current = current.next
+            }
+        }
+        document.getElementById('stars').innerHTML = '✰✰✰✰✰';
+        return false;
+    }
+    printstar(name){
+        let current = this.star1;
+        while(current != null){
+            if(current.pelicula == name){
+                if(current.estrellas == 0){
+                    document.getElementById('stars').innerHTML = '✰✰✰✰✰';
+            
+                }else if(current.estrellas == 1){
+                    document.getElementById('stars').innerHTML = '⭐✰✰✰✰';
+                }else if(current.estrellas == 2){
+                    document.getElementById('stars').innerHTML = '⭐⭐✰✰✰';
+                }else if(current.estrellas == 3){
+                    document.getElementById('stars').innerHTML = '⭐⭐⭐✰✰';
+                }else if(current.estrellas == 4){
+                    document.getElementById('stars').innerHTML = '⭐⭐⭐⭐✰';
+                }else if(current.estrellas == 5){
+                    document.getElementById('stars').innerHTML = '⭐⭐⭐⭐⭐';
+                }
+                return true
+            }else{
+                current = current.next
+            }
+        }
+        document.getElementById('stars').innerHTML = '✰✰✰✰✰';
+        return false;
+      
+
+    }
+
+
+        verificarstars(name){
+            let current = this.star1;
+            while(current != null){
+              if(current.pelicula== name){
+                return true;
+              }else{
+                current = current.next;
+              }
+            }
+            return false;
+        }
+
+    Card1(id,nombre,precio,descripcion,idDiv){
+      
+     
+        let card = document.querySelector(idDiv);
+
+        card.innerHTML += `
+  
+        <div class="product-details">
+        <h1>${nombre}</h1>
+            <p class="information">${descripcion}</p>    
+    <div class="button-get-plan">
+        <a id="punt"  href="#"  onclick="punteo('${nombre}')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20 " class="svg-rocket">
+                <path d="M15.94,10.179l-2.437-0.325l1.62-7.379c0.047-0.235-0.132-0.458-0.372-0.458H5.25c-0.241,0-0.42,0.223-0.373,0.458l1.634,7.376L4.06,10.179c-0.312,0.041-0.446,0.425-0.214,0.649l2.864,2.759l-0.724,3.947c-0.058,0.315,0.277,0.554,0.559,0.401l3.457-1.916l3.456,1.916c-0.419-0.238,0.56,0.439,0.56-0.401l-0.725-3.947l2.863-2.759C16.388,10.604,16.254,10.22,15.94,10.179M10.381,2.778h3.902l-1.536,6.977L12.036,9.66l-1.655-3.546V2.778z M5.717,2.778h3.903v3.335L7.965,9.66L7.268,9.753L5.717,2.778zM12.618,13.182c-0.092,0.088-0.134,0.217-0.11,0.343l0.615,3.356l-2.938-1.629c-0.057-0.03-0.122-0.048-0.184-0.048c-0.063,0-0.128,0.018-0.185,0.048l-2.938,1.629l0.616-3.356c0.022-0.126-0.019-0.255-0.11-0.343l-2.441-2.354l3.329-0.441c0.128-0.017,0.24-0.099,0.295-0.215l1.435-3.073l1.435,3.073c0.055,0.116,0.167,0.198,0.294,0.215l3.329,0.441L12.618,13.182z"></path>
+            </=>
+            <span >PUNTUACION</span>
+        </a>
+    </div>
+    <input id="star33" type="text" autocomplete="off" placeholder="Escribe tu Puntuacion (1-5)" name="text" class="input">
+    <p id="stars"></p>
+    <div class="button-get-plan">
+        <a id="alq" href="#"  onclick="alquilar('${nombre}')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="svg-rocket">
+                <path d="M18.641,4.818H1.444c-0.475,0-0.86,0.385-0.86,0.86v8.6c0,0.474,0.385,0.859,0.86,0.859h17.197c0.475,0,0.859-0.386,0.859-0.859v-8.6C19.5,5.203,19.115,4.818,18.641,4.818 M1.874,5.678c0.237,0,0.43,0.192,0.43,0.431c0,0.237-0.193,0.43-0.43,0.43c-0.238,0-0.43-0.192-0.43-0.43C1.444,5.87,1.636,5.678,1.874,5.678 M1.874,14.277c-0.238,0-0.43-0.193-0.43-0.431s0.192-0.43,0.43-0.43c0.237,0,0.43,0.192,0.43,0.43S2.111,14.277,1.874,14.277 M18.21,14.277c-0.237,0-0.43-0.193-0.43-0.431s0.192-0.43,0.43-0.43c0.238,0,0.431,0.192,0.431,0.43S18.448,14.277,18.21,14.277 M18.641,12.636c-0.135-0.048-0.279-0.079-0.431-0.079c-0.712,0-1.289,0.578-1.289,1.29c0,0.151,0.03,0.295,0.078,0.431H3.084c0.048-0.136,0.079-0.279,0.079-0.431c0-0.712-0.578-1.29-1.29-1.29c-0.152,0-0.295,0.031-0.43,0.079V7.319c0.135,0.048,0.278,0.08,0.43,0.08c0.711,0,1.29-0.578,1.29-1.29c0-0.152-0.031-0.295-0.079-0.431h13.915c-0.048,0.136-0.078,0.279-0.078,0.431c0,0.712,0.577,1.29,1.289,1.29c0.151,0,0.296-0.031,0.431-0.08V12.636z M18.21,6.538c-0.237,0-0.43-0.192-0.43-0.43c0-0.238,0.192-0.431,0.43-0.431c0.238,0,0.431,0.192,0.431,0.431C18.641,6.346,18.448,6.538,18.21,6.538 M15.631,12.557h-0.86c-0.236,0-0.43,0.193-0.43,0.431s0.193,0.43,0.43,0.43h0.86c0.238,0,0.43-0.192,0.43-0.43S15.869,12.557,15.631,12.557 M5.313,6.538h-0.86c-0.237,0-0.43,0.192-0.43,0.43c0,0.237,0.193,0.43,0.43,0.43h0.86c0.237,0,0.43-0.193,0.43-0.43C5.743,6.73,5.55,6.538,5.313,6.538 M10.042,6.538c-1.899,0-3.439,1.54-3.439,3.439c0,1.9,1.54,3.44,3.439,3.44s3.439-1.54,3.439-3.44C13.481,8.078,11.941,6.538,10.042,6.538M10.969,9.359l-0.164,0.379H9.26C9.256,9.758,9.254,9.785,9.254,9.82v0.136c0,0.103,0.002,0.164,0.006,0.184h1.456l-0.158,0.373H9.292c0.05,0.319,0.157,0.57,0.321,0.751c0.189,0.224,0.446,0.336,0.77,0.336c0.21,0,0.384-0.03,0.523-0.094c0.126-0.06,0.269-0.158,0.428-0.296v0.656c-0.285,0.174-0.603,0.261-0.951,0.261c-0.563,0-1.003-0.162-1.318-0.484c-0.273-0.28-0.443-0.657-0.511-1.13H8.068l0.17-0.373h0.284c-0.004-0.027-0.007-0.057-0.009-0.088C8.511,10.02,8.51,9.986,8.51,9.951c0-0.027,0-0.059,0.003-0.094C8.515,9.82,8.518,9.781,8.522,9.738H8.068l0.165-0.379h0.333C8.671,8.906,8.863,8.547,9.14,8.283c0.324-0.304,0.737-0.456,1.243-0.456c0.365,0,0.74,0.123,1.122,0.367l-0.29,0.538c-0.269-0.252-0.563-0.378-0.883-0.378c-0.282,0-0.517,0.104-0.706,0.313c-0.16,0.185-0.267,0.416-0.322,0.691H10.969z"></path>
+            </svg>
+            <span >Alquilar Q.${precio}.00</span>
+        </a>
+    </div>
+   
+    <h2 id="title-coment" >COMENTARIOS</h2>
+
+    <div class="contenedor33">
+        <section class="contenedor-agg-com">
+            <div class="imagen-usuario">
+                <img src="logo.png">
+            </div>
+            <div class="input-com">
+                <input id="nuevoComentario" type="text" placeholder="Nuevo Comentario...">
+                <div id="bo" class="button-get-plan">
+                    <a id="punt"  href="#"  onclick="comen('${nombre}','${id}','${precio}')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20 " class="svg-rocket">
+                            <path d="M17.659,3.681H8.468c-0.211,0-0.383,0.172-0.383,0.383v2.681H2.341c-0.21,0-0.383,0.172-0.383,0.383v6.126c0,0.211,0.172,0.383,0.383,0.383h1.532v2.298c0,0.566,0.554,0.368,0.653,0.27l2.569-2.567h4.437c0.21,0,0.383-0.172,0.383-0.383v-2.681h1.013l2.546,2.567c0.242,0.249,0.652,0.065,0.652-0.27v-2.298h1.533c0.211,0,0.383-0.172,0.383-0.382V4.063C18.042,3.853,17.87,3.681,17.659,3.681 M11.148,12.87H6.937c-0.102,0-0.199,0.04-0.27,0.113l-2.028,2.025v-1.756c0-0.211-0.172-0.383-0.383-0.383H2.724V7.51h5.361v2.68c0,0.21,0.172,0.382,0.383,0.382h2.68V12.87z M17.276,9.807h-1.533c-0.211,0-0.383,0.172-0.383,0.383v1.755L13.356,9.92c-0.07-0.073-0.169-0.113-0.27-0.113H8.851v-5.36h8.425V9.807z"></path>
+                        </=>
+                        <span >Comentar</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <ul id="comentarios" class="contenedor-2">
+           
+    </ul>
+      
+    </div>      
+    <div class="product-image">
+        
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=859&q=80" alt="Omar Dsoky">
+    </div>`;
+
+
     }
   
     inordenCardR(idDiv){
@@ -719,28 +953,29 @@ class NodoAVL2{
             
             <div class="plan-card">
             <h2>${node.getData().nombre_pelicula}</h2>
-            <span id="contenido11">${node.getData().descripcion}</span>
+            <span id="${node.getData().id_pelicula}">${node.getData().descripcion}</span>
             <div class="etiquet-price">
                 <p>${node.getData().precio_Q}</p>
                 <div></div>
             </div>
-            <div class="benefits-list">
-                <ul>
-                    <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"></path>
-                            </svg><span onclick="alquilar('${node.getData().nombre_pelicula}')">Alquilar</span></li>
-                </ul>
-            </div>
+            <div class="button-get-plan">
+            <a id="alq" href="#"  onclick="alquilar('${node.getData().nombre_pelicula}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="svg-rocket">
+                    <path d="M18.641,4.818H1.444c-0.475,0-0.86,0.385-0.86,0.86v8.6c0,0.474,0.385,0.859,0.86,0.859h17.197c0.475,0,0.859-0.386,0.859-0.859v-8.6C19.5,5.203,19.115,4.818,18.641,4.818 M1.874,5.678c0.237,0,0.43,0.192,0.43,0.431c0,0.237-0.193,0.43-0.43,0.43c-0.238,0-0.43-0.192-0.43-0.43C1.444,5.87,1.636,5.678,1.874,5.678 M1.874,14.277c-0.238,0-0.43-0.193-0.43-0.431s0.192-0.43,0.43-0.43c0.237,0,0.43,0.192,0.43,0.43S2.111,14.277,1.874,14.277 M18.21,14.277c-0.237,0-0.43-0.193-0.43-0.431s0.192-0.43,0.43-0.43c0.238,0,0.431,0.192,0.431,0.43S18.448,14.277,18.21,14.277 M18.641,12.636c-0.135-0.048-0.279-0.079-0.431-0.079c-0.712,0-1.289,0.578-1.289,1.29c0,0.151,0.03,0.295,0.078,0.431H3.084c0.048-0.136,0.079-0.279,0.079-0.431c0-0.712-0.578-1.29-1.29-1.29c-0.152,0-0.295,0.031-0.43,0.079V7.319c0.135,0.048,0.278,0.08,0.43,0.08c0.711,0,1.29-0.578,1.29-1.29c0-0.152-0.031-0.295-0.079-0.431h13.915c-0.048,0.136-0.078,0.279-0.078,0.431c0,0.712,0.577,1.29,1.289,1.29c0.151,0,0.296-0.031,0.431-0.08V12.636z M18.21,6.538c-0.237,0-0.43-0.192-0.43-0.43c0-0.238,0.192-0.431,0.43-0.431c0.238,0,0.431,0.192,0.431,0.431C18.641,6.346,18.448,6.538,18.21,6.538 M15.631,12.557h-0.86c-0.236,0-0.43,0.193-0.43,0.431s0.193,0.43,0.43,0.43h0.86c0.238,0,0.43-0.192,0.43-0.43S15.869,12.557,15.631,12.557 M5.313,6.538h-0.86c-0.237,0-0.43,0.192-0.43,0.43c0,0.237,0.193,0.43,0.43,0.43h0.86c0.237,0,0.43-0.193,0.43-0.43C5.743,6.73,5.55,6.538,5.313,6.538 M10.042,6.538c-1.899,0-3.439,1.54-3.439,3.439c0,1.9,1.54,3.44,3.439,3.44s3.439-1.54,3.439-3.44C13.481,8.078,11.941,6.538,10.042,6.538M10.969,9.359l-0.164,0.379H9.26C9.256,9.758,9.254,9.785,9.254,9.82v0.136c0,0.103,0.002,0.164,0.006,0.184h1.456l-0.158,0.373H9.292c0.05,0.319,0.157,0.57,0.321,0.751c0.189,0.224,0.446,0.336,0.77,0.336c0.21,0,0.384-0.03,0.523-0.094c0.126-0.06,0.269-0.158,0.428-0.296v0.656c-0.285,0.174-0.603,0.261-0.951,0.261c-0.563,0-1.003-0.162-1.318-0.484c-0.273-0.28-0.443-0.657-0.511-1.13H8.068l0.17-0.373h0.284c-0.004-0.027-0.007-0.057-0.009-0.088C8.511,10.02,8.51,9.986,8.51,9.951c0-0.027,0-0.059,0.003-0.094C8.515,9.82,8.518,9.781,8.522,9.738H8.068l0.165-0.379h0.333C8.671,8.906,8.863,8.547,9.14,8.283c0.324-0.304,0.737-0.456,1.243-0.456c0.365,0,0.74,0.123,1.122,0.367l-0.29,0.538c-0.269-0.252-0.563-0.378-0.883-0.378c-0.282,0-0.517,0.104-0.706,0.313c-0.16,0.185-0.267,0.416-0.322,0.691H10.969z"></path>
+                </svg>
+                <span >Alquilar</span>
+            </a>
+        </div>
             <div class="button-get-plan">
                 <a href="#"  onclick="pelis('${node.getData().id_pelicula}','${node.getData().nombre_pelicula}','${node.getData().precio_Q}')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
-                        <path d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="svg-rocket">
+                        <path d="M4.317,16.411c-1.423-1.423-1.423-3.737,0-5.16l8.075-7.984c0.994-0.996,2.613-0.996,3.611,0.001C17,4.264,17,5.884,16.004,6.88l-8.075,7.984c-0.568,0.568-1.493,0.569-2.063-0.001c-0.569-0.569-0.569-1.495,0-2.064L9.93,8.828c0.145-0.141,0.376-0.139,0.517,0.005c0.141,0.144,0.139,0.375-0.006,0.516l-4.062,3.968c-0.282,0.282-0.282,0.745,0.003,1.03c0.285,0.284,0.747,0.284,1.032,0l8.074-7.985c0.711-0.71,0.711-1.868-0.002-2.579c-0.711-0.712-1.867-0.712-2.58,0l-8.074,7.984c-1.137,1.137-1.137,2.988,0.001,4.127c1.14,1.14,2.989,1.14,4.129,0l6.989-6.896c0.143-0.142,0.375-0.14,0.516,0.003c0.143,0.143,0.141,0.374-0.002,0.516l-6.988,6.895C8.054,17.836,5.743,17.836,4.317,16.411"></path>
                     </svg>
                     <span >INFORMACION</span>
                 </a>
             </div>
         </div>`;
-            //console.log(node.getData() + ' ');
+        
   
   
             this._inordenCardR(node.getIzquierda(), idDiv);
@@ -1141,6 +1376,7 @@ class ArbolBinario{
             if (user == recorrido.username && passw == recorrido.contraseña) {
               document.getElementById("VENTANA-USUARIO").style.display = "grid";
               document.getElementById("LOGIN").style.display = "none";
+              USUARIO33 = recorrido.username;
             
               return "dato enocntrado";
             } else {
@@ -1243,6 +1479,7 @@ let peliculas2 = new ArbolAVL2();
 
 let  graphviz =""
 let comentarios = [];
+let USUARIO33 = ""
 
   //--------------------------------------------------------
 
@@ -1445,14 +1682,17 @@ function grafopeliculas(){
 }
 
 function movies2(){
+    document.getElementById("container").style.display="none";
     document.getElementById("botones-asdes").style.display="grid";
     document.getElementById("movies-container").style.display="flex";
+   
 
 
 }
 function actors2(){
     document.getElementById("botones-asdes").style.display="none";
     document.getElementById("movies-container").style.display="none";
+    document.getElementById("container").style.display="none";
 }
 
 function pelis(id,nombre,precio){
@@ -1460,7 +1700,14 @@ function pelis(id,nombre,precio){
     document.getElementById("movies-container").style.display="none";
     document.getElementById("botones-asdes").style.display="none";
     let x = document.getElementById(id).innerHTML
-    swal("error"," "+x,"success");
+    document.getElementById("container").innerHTML = ""
+    peliculas2.Card1(id,nombre,precio,x,"#container")
+    peliculas2.addstars(nombre)
+    peliculas2.printstar(nombre)
+    peliculas2.setcoment(nombre)
+
+//     // swal("sucess"," " + x,"success")
+ 
 }
 
 function mostraras(){
@@ -1475,4 +1722,30 @@ function mostrardes(){
 function alquilar(nombre){
 
     peliculas2.addalquilar(nombre);
+}
+
+function punteo(name){
+    let star = document.getElementById("star33").value;
+    if (star == ""){
+
+    }else{
+        peliculas2.setStar(name,star)
+    }
+    document.getElementById("star33").value = "";
+   
+}
+function comen(nombre,id,precio){
+    let comentario = document.getElementById("nuevoComentario").value;
+    if(comentario ==""){
+
+    }else{
+         document.getElementById('comentarios').innerHTML = ""
+         peliculas2.addstars(nombre)
+         peliculas2.addcomen(nombre,comentario,USUARIO33);
+         peliculas2.setcoment(nombre)
+
+    }
+    document.getElementById("nuevoComentario").value = ""
+
+ 
 }

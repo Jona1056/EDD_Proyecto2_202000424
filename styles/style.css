@@ -25,14 +25,13 @@ body {
     place-items:center;
     min-height:100vh;
 } */
-ul,
-li {
+header  ul,li {
   list-style: none;
   display: flex;
   padding: 1em;
   margin: 0;
 }
-li {
+header li {
   cursor: pointer;
   transition: all 0.5s ease-in-out;
   margin: 0.5rem;
@@ -40,7 +39,7 @@ li {
   color: #f5f5f5;
   border-radius: 20px;
 }
-li:hover {
+header  li:hover {
   background-color: #017592;
   box-shadow: 3px 5px 5px rgb(0, 0, 0, 1);
 }
@@ -760,7 +759,7 @@ button:hover span:nth-child(2) {
 
 .etiquet-price {
 
-  background: #00ccff;
+  background: #a0729c;
   width: 14.46rem;
   margin-left: -0.65rem;
   padding: .2rem 1.2rem;
@@ -836,12 +835,58 @@ button:hover span:nth-child(2) {
   justify-content: center;
   margin-top: 1.2rem;
 }
+#container .button-get-plan #punt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(139, 122, 184);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+#container .button-get-plan #alq {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(139, 122, 184);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+#container .button-get-plan #co {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(139, 122, 184);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
 
 .button-get-plan a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000446;
+  background: rgb(139, 122, 184);
   color: #fff;
   padding: 10px 15px;
   border-radius: 5px;
@@ -857,7 +902,7 @@ button:hover span:nth-child(2) {
   box-shadow: 0 3px 10px rgba(207, 212, 222, 0.9);
 }
 
-.button-get-plan .svg-rocket {
+.svg-rocket {
   margin-right: 10px;
   width: 1.9rem;
   fill: currentColor;
@@ -929,7 +974,7 @@ button:hover span:nth-child(2) {
 #container .product-details h1:before{
 	position: absolute;
 	content: '';
-	right: -60%; 
+	right: -40%; 
 	top: 0%;
 	transform: translate(25px, -15px);
 	font-family: 'Farsan', cursive;
@@ -1175,14 +1220,14 @@ button:hover span:nth-child(2) {
   padding: 0.4vw;
 
   transition: .4s;
-  height:30px ;
+  height:40px ;
   
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin-left:200px;
-  margin-top:-48px;
+  margin-top:-51px;
 }
 
 .input:hover {
@@ -1190,6 +1235,110 @@ button:hover span:nth-child(2) {
 }
 
 .input:focus {
-  box-shadow: 0 0 0 .20vw #00ccff;
+  box-shadow: 0 0 0 .40vw rgb(139, 122, 184);;
+}
+
+
+.contenedor33{
+  background-color: rgba(121, 112, 112, 0.7);
+  width:425px;
+  height:120px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  border-radius:20px;
+  margin-bottom: 10px;
+}
+
+.contenedor-2{
+  width:385px;
+  height:auto;
+  background-color: rgba(121, 112, 112, 0.7);
+  display:flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding:10px 10px 30px 20px;
+  gap: 20px;
+  text-transform:capitalize;
+  border-radius:20px
+  
+
+  
+}
+.contenedor-2 p{ 
+color:rgb(12, 5, 29);
+font-weight: bold;
+margin-left: 33px;
+margin-top:-45px;
+  
+}
+
+.comentarios{
+  background-color: rgba(255,255,255,0.7);
+  width:91%;
+  height:60px;
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 0 0 20px;
+  border-radius:20px;
+  color:black;
+  margin-top: -30px;
+  margin-bottom: -15px;
+
+
+}
+.contenedor-agg-com{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap:10px
+}
+
+.input-com{
+  width:500px;
+  height: 100px;
+  background:none;
+  display:flex;
+  flex-direction: column;
+  justify-content: baseline;
+  gap:5px;
+}
+#nuevoComentario{
+  outline:None;
+  border:0;
+  width:72%;
+  margin-left:30px;
+  height:50px;
+  padding: 0px 10px 0px 10px;
+  font-size:15px;
+  background-color: transparent ;
+  color:black;
+  border-bottom: 2px solid black;
+  transition-duration: 200ms;
+}
+
+#nuevoComentario::placeholder{
+  color:black;
+}
+#nuevoComentario::focus{
+  border-bottom: 2px solid red;
+}
+
+.btn-agg{
+  height:60px;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 5px 0 0 ;
+}
+
+#bo{
+  width:180%;
+  height: 30px;
+  margin-top:4px;
 }
 
