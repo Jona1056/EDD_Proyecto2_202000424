@@ -718,8 +718,33 @@ button:hover span:nth-child(2) {
   justify-content: left;
 
   overflow-x: scroll;
+  overflow-y: none;
   border-top: none;
   border-left: none;
+  height: auto;
+
+
+
+}
+#categoriaslist{
+
+  gap:10px;
+
+  margin-top:12%;
+  margin-bottom: 10%;
+  border-radius: 10px;
+  border-style: solid;
+  display:flex;
+  float:left;
+  justify-content: left;
+  height: auto;
+  overflow-x: scroll;
+  border-top: none;
+  border-left: none;
+  height: auto;
+  width: auto;
+  display:none;
+ 
 
 
 
@@ -731,8 +756,8 @@ button:hover span:nth-child(2) {
 
 .plan-card {
   background: #fff;
-  width: 15rem;
-  height: 35rem;
+  width: 18rem;
+  height: auto;
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 10px;
@@ -753,6 +778,7 @@ button:hover span:nth-child(2) {
 
 
 }
+
 
 .plan-card h2 {
   margin-bottom: 15px;
@@ -1415,9 +1441,18 @@ margin-top:-45px;
   align-items: center;
   margin: auto;
 }
+.picture svg{
+  width: 3em;
+  fill: currentColor;
+ 
+
+}
+
+
+
 
 .user-picture svg {
-  width: 2.5rem;
+  width: 3rem;
   fill: currentColor;
 }
 
@@ -1570,3 +1605,77 @@ float: left;
   margin-left:10px;
  }
  
+
+
+ .card33 {
+  --background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
+  width: 190px;
+  height: 254px;
+  min-width: 190px;
+  
+  padding: 5px;
+  margin-bottom: 10px;
+
+  display:flex;
+  border-radius: 1rem;
+  overflow: visible;
+  background: #f7ba2b;
+  background: var(--background);
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+  
+ }
+ 
+ .card33::after {
+  position: absolute;
+  content: "";
+  display:flex;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  transform: scale(0.8);
+  filter: blur(25px);
+  background: #f7ba2b;
+  background: var(--background);
+  transition: opacity .5s;
+ }
+ 
+ .card-info {
+  --color: #181818;
+  background: var(--color);
+  color: var(--color);
+
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-items: center;
+
+
+  border-radius: .7rem;
+  justify-content: center;
+
+ }
+ #title12{
+  margin-top:38%;
+ }
+ 
+ .card33 .title {
+  font-weight: bold;
+
+ 
+
+
+ }
+ 
+ /*Hover*/
+ .card33:hover::after {
+  opacity: 0;
+ }
+ 
+ .card33:hover .card-info {
+  color: #f7ba2b;
+  transition: color 1s;
+ }
