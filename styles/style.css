@@ -340,6 +340,19 @@ h3 {
   overflow: auto;
 
 }
+#showcategorias{
+  display:none;
+  margin: 0;
+  padding: 0;
+  width: 35vw;
+  height: 20vw;
+  background-color: white;
+  align-items: center;
+  margin-top: -18.5%;
+  margin-left: 50%;
+  overflow: auto;
+
+}
 #bgrafousuarios {
   font-family: "Overpass", sans-serif;
   font-size: 80%;

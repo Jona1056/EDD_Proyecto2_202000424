@@ -121,7 +121,7 @@
             Subir Actores
         </div>
         <div class="FILECATEGORIAS">
-            <input type="button" id="fichero-categorias" class="input-file" value="">
+            <input type="file" id="fichero-categorias" onclick="Cargar_categorias()" class="input-file" value="">
             Subir Categorias
         </div>
 
@@ -146,7 +146,7 @@
             <span></span>
             <span></span>Grafo Actores
         </button>
-        <button id="bgrafocategorias">
+        <button id="bgrafocategorias" onclick="grafocategorias()">
             <span></span>
             <span></span>
             <span></span>
@@ -160,6 +160,9 @@
 
         </div>
         <div id="showpeliculas" style="background-color: #D3D3D3;">
+
+        </div>
+        <div id="showcategorias" style="background-color: #D3D3D3;">
 
         </div>
 
