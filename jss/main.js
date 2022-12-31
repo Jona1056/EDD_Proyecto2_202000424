@@ -1068,7 +1068,7 @@ class ArbolBinario {
 
   preordenGraph() {
     if (this.head == null) {
-      console.log("No se ha insertado nada en el BSTree.");
+      console.log("N");
     } else {
       this._preordenGraph(this.head);
     }
@@ -2107,31 +2107,102 @@ class Merkle {
     }
   }
 
+  graphmerkle(){
+ 
+    this.dot = "";
+    this.dot = 'digraph SimpleList{\nnode[shape= box, fillcolor="#FFFFFF", style= filled];\nbgcolor = "  #00ccff ";\nranksep = 0.5;\nnodesep = 0.5;\nsubgraph cluster_A{\nlabel = "Actores";\nbgcolor = "  #00ffad ";\nfontcolor ="black ";\nfontsize = 30;\n\n ';
+    this._grap();
+    
+    this.dot += "}\n}";
+    let id = "#" + "arbolmerkle";
+
+    d3.select(id)
+      .graphviz()
+
+      .width(2000)
+      .height(1500)
+      .zoom(true)
+      .fit(true)
+      .renderDot(this.dot);
+  }
+  _grap() {
+
+    if(this.tophash == null){
+
+    }else{
+      this.graph1(this.tophash)
+    }
+  }
+  graph1(node) {
+    if(node != null){
+      if(node.left != null){
+        this.dot += "n"+node.hash +'[label="' +node.hash+ '"];\n';
+        this.dot += node.left.hash+ '[label="' + node.left.hash+ '"];\n';
+        this.dot += "n"+node.hash +" -> " + node.left.hash+"\n";
+      }
+    // terminamos con el derecho agregando los label en cada corrida que pasa
+    if (node.right!= null) {
+      this.dot +=node.hash+'[label="' + node.hash+ '"];\n';
+      this.dot+= node.right.hash+ '[label="' + node.right.hash +'"];\n';
+      this.dot +=node.hash+" -> " +node.right.hash+"\n";
+    }
+    this.graph1(node.left);
+    this.graph1(node.right);
+  } else {
+    console.log("no existen datos");
+  }
+      }
+   printgraph(){
+   swal("hola mundo",""+this.dot,"success")
+    
+   }
+
   
 }
-var time = 30000
+var time = 5000
 var merkle33 = new Merkle();
 var dato33 = ""
 var as = setInterval(()=>{
  
  
  merkle33.generarBloque(dato33)
-//   dato33 = "pei2"
+
  merkle33.println();
 
+//  merkle33.graphmerkle();
+// merkle33.printgraph();
+
 
   
-  
 
-
-
-
-
-	
 },time)
 
 
 function genblock(){
  merkle33.generarBloque(dato33);
  merkle33.println();
+}
+
+function modsec(){
+  let timenew = document.getElementById("sec").value;
+  if(timenew == ""){
+    swal("error","Ingrese un valor","error")
+  }else{
+    if(!isNaN(timenew)){
+      let newtime = timenew*1000;
+      clearInterval(as)
+      as = setInterval(()=>{
+ 
+ 
+        merkle33.generarBloque(dato33)
+        merkle33.println();
+       
+       },newtime)
+      
+
+  }else{
+    swal("error","Por favor ingrese un valor numerico","error")
+  }
+  }
+  document.getElementById("sec").value = ""
 }
