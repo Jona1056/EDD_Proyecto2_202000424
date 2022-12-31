@@ -955,7 +955,8 @@ class ArbolAVL2 {
         this.head = newNode;
         this.tail = newNode;
       }
-      swal("Exito", "La pelicula fue alquilada con exito", "success");
+      dato33 += name +"-"+ USUARIO33+" ";
+      swal("Exito", "La pelicula fue alquilada con exito" + " "+name, "success");
     }
   }
 
@@ -1886,6 +1887,7 @@ function mostrardes() {
 
 function alquilar(nombre) {
   peliculas2.addalquilar(nombre);
+ 
 }
 
 function punteo(name) {
@@ -1993,6 +1995,7 @@ class Merkle {
 		var newdata = new Bloque(this.size,date,pelicula,nonce,prevHash,data,hash);
 		this.datablock.push(newdata)
     this.size++;
+    dato33 = ""
 	}	
   isEmpty(){
     if (this.datablock.length==0){
@@ -2106,14 +2109,14 @@ class Merkle {
 
   
 }
-var time = 3500
+var time = 30000
 var merkle33 = new Merkle();
-var dato33 = "dfa"
+var dato33 = ""
 var as = setInterval(()=>{
  
  
  merkle33.generarBloque(dato33)
-  // dato33 = "pei2"
+//   dato33 = "pei2"
  merkle33.println();
 
 
@@ -2126,3 +2129,9 @@ var as = setInterval(()=>{
 
 	
 },time)
+
+
+function genblock(){
+ merkle33.generarBloque(dato33);
+ merkle33.println();
+}
