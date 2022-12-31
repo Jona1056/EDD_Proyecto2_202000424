@@ -141,7 +141,7 @@ var as = setInterval(()=>{
 	
 
   blockChain.generarBloque();  
-  // merkle.grafomerkle();
+ 
   swal("hola", "" , "success")
 
 //  blockChain.print();

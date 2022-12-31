@@ -139,28 +139,26 @@ class Merkle {
     document.getElementById("block").innerHTML = ""
     let card = document.querySelector("#block")
     for(var i = 0; i<this.datablock.length;i++){
-      card.innerHTML += this.datablock[i].hash
+      // card.innerHTML += this.datablock[i].hash
           card.innerHTML += this.datablock[i].prevHash
     }
   }
 
   
 }
-var time = 3500
+var time = 1000
 var merkle33 = new Merkle();
 var dato33 = "peli"
 var as = setInterval(()=>{
 
 	merkle33.generarBloque(dato33)
-  dato33 = "pei2"
-  merkle33.println();
+  // dato33 = "pei2"
+  // merkle33.println();
+  swal("1","2","2")
 
 
 
-  // merkle.grafomerkle();
 
-
-//  blockChain.print();
 
 
 	

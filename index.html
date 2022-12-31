@@ -101,7 +101,9 @@
             <div class="container">
                 <h3>MovieCats</h3>
                 <ul>
+                    <li onclick="goChain()">BlockChain</li>
                     <li onclick="Back()">Cerrar Sesion</li>
+                  
                 </ul>
             </div>
         </header>
@@ -183,6 +185,41 @@
             Descargar Categorias
         </div>
     </div>
+    <div id="block1">
+        <header>
+            <div class="container">
+                <h3>MovieCats</h3>
+                <ul>
+                    <li onclick="goAdmin()">Admin</li>
+                    <li onclick="Back()">Cerrar Sesion</li>
+                  
+                </ul>
+            </div>
+        </header>
+
+        <div id="block-botones">
+
+            <div class="container-block">
+                <input type="text" required="required">
+                <label>Modifica el Intervalo</label>
+                <i></i>
+           
+            </div>
+            <button onclick="inorden12()" id="lumi" class="lumi33"> Modificar Segundos
+            </button>
+
+            <button onclick="inorden12()" id="lumi" class="lumi44">Generar Bloque
+            </button>
+
+        </div>
+
+        <div id="blochchain-container">
+         
+            
+            
+        </div>
+    </div>
+
 
 
 
@@ -260,11 +297,21 @@
     <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
     <script src="./jss/main.js"></script>
+ 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://superal.github.io/canvas2image/canvas2image.js "></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"
+    integrity="sha512-szJ5FSo9hEmXXe7b5AUVtn/WnL8a5VofnFeYC2i2z03uS2LhAch7ewNLbl5flsEmTTimMN0enBZg/3sQ+YOSzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"
+    integrity="sha512-8WAv/Z7UaDv0U1DCJ3W1oul76HOvq2/9mc+IbOZGsTj9iwZnnCXL/0FS6GQKNR++krdfVn9kuAAQ6v2DqZ9uEQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
    
 
 
