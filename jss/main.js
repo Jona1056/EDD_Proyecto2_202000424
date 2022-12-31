@@ -1074,16 +1074,8 @@ class ArbolBinario {
     if (node != null) {
       //comenzamos con el lado izquierdo ya es es preodrden
       if (node.getLeft() != null) {
-        this.graphviz +=
-          node.getContenido().dni +
-          '[label="' +
-          node.getContenido().nombre_actor +
-          '"];\n';
-        this.graphviz +=
-          node.getLeft().getContenido().dni +
-          '[label="' +
-          node.getLeft().getContenido().nombre_actor +
-          '"];\n';
+        this.graphviz += node.getContenido().dni +'[label="' +node.getContenido().nombre_actor + '"];\n';
+        this.graphviz += node.getLeft().getContenido().dni + '[label="' + node.getLeft().getContenido().nombre_actor + '"];\n';
         this.graphviz +=
           node.getContenido().dni +
           " -> " +
@@ -1154,7 +1146,9 @@ class ArbolBinario {
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path d="M8.749,9.934c0,0.247-0.202,0.449-0.449,0.449H4.257c-0.247,0-0.449-0.202-0.449-0.449S4.01,9.484,4.257,9.484H8.3C8.547,9.484,8.749,9.687,8.749,9.934 M7.402,12.627H4.257c-0.247,0-0.449,0.202-0.449,0.449s0.202,0.449,0.449,0.449h3.145c0.247,0,0.449-0.202,0.449-0.449S7.648,12.627,7.402,12.627 M8.3,6.339H4.257c-0.247,0-0.449,0.202-0.449,0.449c0,0.247,0.202,0.449,0.449,0.449H8.3c0.247,0,0.449-0.202,0.449-0.449C8.749,6.541,8.547,6.339,8.3,6.339 M18.631,4.543v10.78c0,0.248-0.202,0.45-0.449,0.45H2.011c-0.247,0-0.449-0.202-0.449-0.45V4.543c0-0.247,0.202-0.449,0.449-0.449h16.17C18.429,4.094,18.631,4.296,18.631,4.543 M17.732,4.993H2.46v9.882h15.272V4.993z M16.371,13.078c0,0.247-0.202,0.449-0.449,0.449H9.646c-0.247,0-0.449-0.202-0.449-0.449c0-1.479,0.883-2.747,2.162-3.299c-0.434-0.418-0.714-1.008-0.714-1.642c0-1.197,0.997-2.246,2.133-2.246s2.134,1.049,2.134,2.246c0,0.634-0.28,1.224-0.714,1.642C15.475,10.331,16.371,11.6,16.371,13.078M11.542,8.137c0,0.622,0.539,1.348,1.235,1.348s1.235-0.726,1.235-1.348c0-0.622-0.539-1.348-1.235-1.348S11.542,7.515,11.542,8.137 M15.435,12.629c-0.214-1.273-1.323-2.246-2.657-2.246s-2.431,0.973-2.644,2.246H15.435z"></path>
                   </svg>
-                  <span class="tooltip-social">${node.getContenido().dni}</span>
+                  <span class="tooltip-social">${
+                    node.getContenido().dni
+                  }23212131</span>
               </a>
               <a href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -1562,7 +1556,7 @@ class TableHash {
     }
   }
 
-  cards(idDiv){
+  cards(idDiv) {
     let card = document.querySelector(idDiv);
     for (var i = 0; i < this.size; i++) {
       if (this.table[i].head == null) {
@@ -1583,11 +1577,8 @@ class TableHash {
                 </div>
               </div>
         `;
-      
       }
     }
-   
-
   }
 }
 
@@ -1638,12 +1629,12 @@ function loginadmin() {
 }
 //---------------------------------
 function grafocategorias() {
-    tablahash.graph("showcategorias")
-    document.getElementById("showlist").style.display = "none";
-    document.getElementById("showactores").style.display = "none";
-    document.getElementById("showpeliculas").style.display = "none";
-    document.getElementById("showcategorias").style.display = "grid";
-  }
+  tablahash.graph("showcategorias");
+  document.getElementById("showlist").style.display = "none";
+  document.getElementById("showactores").style.display = "none";
+  document.getElementById("showpeliculas").style.display = "none";
+  document.getElementById("showcategorias").style.display = "grid";
+}
 function Cargar_categorias(e) {
   var archivo = e.target.files[0];
   document.getElementById("fichero-categorias").files[0];
@@ -1659,8 +1650,7 @@ function Cargar_categorias(e) {
 
     for (const i in _clients) {
       let client1 = _clients[i];
-      tablahash.insert(client1.id_categoria, client1.company)
-      ;
+      tablahash.insert(client1.id_categoria, client1.company);
     }
   };
   lector.readAsText(archivo);
@@ -1710,6 +1700,7 @@ function grafoclientes() {
   document.getElementById("showlist").style.display = "grid";
   document.getElementById("showactores").style.display = "none";
   document.getElementById("showpeliculas").style.display = "none";
+  document.getElementById("showcategorias").style.display = "none";
 }
 
 //CREAR CLIENTE UNO POR UNO
@@ -1755,6 +1746,12 @@ function donwloadactores() {
     $(".response").append(canvas);
   });
 }
+function donwloadcategorias() {
+  html2canvas($("#showcategorias")[0]).then(function (canvas) {
+    return Canvas2Image.saveAsPNG(canvas);
+    $(".response").append(canvas);
+  });
+}
 
 ///FUNCIONAMIENTOS ACTOres
 function Cargar_actores(e) {
@@ -1791,6 +1788,7 @@ function grafoactores() {
   document.getElementById("showlist").style.display = "none";
   document.getElementById("showactores").style.display = "grid";
   document.getElementById("showpeliculas").style.display = "none";
+  document.getElementById("showcategorias").style.display = "none";
 }
 
 //_-------------------------------------
@@ -1828,6 +1826,7 @@ function grafopeliculas() {
   document.getElementById("showlist").style.display = "none";
   document.getElementById("showactores").style.display = "none";
   document.getElementById("showpeliculas").style.display = "grid";
+  document.getElementById("showcategorias").style.display = "none";
 }
 
 function movies2() {
@@ -1846,15 +1845,14 @@ function actors2() {
   document.getElementById("botonsinor").style.display = "block";
   document.getElementById("categoriaslist").style.display = "none";
 }
-function categorias2(){
+function categorias2() {
   document.getElementById("botones-asdes").style.display = "none";
   document.getElementById("movies-container").style.display = "none";
   document.getElementById("actors-container").style.display = "none";
   document.getElementById("container").style.display = "none";
   document.getElementById("botonsinor").style.display = "none";
   document.getElementById("categoriaslist").style.display = "flex";
-  tablahash.cards("#categoriaslist")
-
+  tablahash.cards("#categoriaslist");
 }
 
 function pelis(id, nombre, precio, star) {

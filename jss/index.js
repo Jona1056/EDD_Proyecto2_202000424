@@ -38,7 +38,7 @@ class BlockChain{
     //generamos el arbol
 		merkle.auth()
     //Data revisar
-    var data= merkle.datablock2;
+    var data= merkle.datablock;
 		var rootmerkle = merkle.tophash.hash
     merkle.clear();
 		var nonce = 0;
@@ -51,11 +51,10 @@ class BlockChain{
 		} 
 		var data = new Bloque(this.size,date,data,nonce,prevHash,rootmerkle,hash);
 		this.insert(data)
+    this.size++;
 	}	
 
-	isEmpty(){
-		return this.head === null
-	}
+	
 
   insert(_value){
     var newNode = new Node(_value);
@@ -97,14 +96,30 @@ class BlockChain{
   }
 
   print(){
-    document.getElementById("block").innerHTML = ""
-    let card = document.querySelector("#block");
-    
+    // document.getElementById("block") = ""
+    // let card = document.querySelector("#block");
     var temporal = this.head;
     while(temporal != null){
-     card.innerHTML += temporal.value.data[0].value;    
+      swal("s","" +  temporal.value.data[0].value,"s") 
       temporal = temporal.next;
+
+    //   clearInterval(as)
+    
+    //   time = 100;
+    //   as = setInterval(()=>{
+ 
+    //    blockChain.generarBloque();  
+     
+    //   blockChain.print();
+     
+     
+       
+    //  },time)
+   
+
     }
+   
+   
   }
 
   print2(){
@@ -118,17 +133,18 @@ class BlockChain{
 
 
 var blockChain = new BlockChain();
-var time = 3000
+var time = 1000
 //var time = 60000
 
 var as = setInterval(()=>{
 
-	blockChain.generarBloque();  
+	
 
-    // blockChain.print()
+  blockChain.generarBloque();  
+  // merkle.grafomerkle();
+  swal("hola", "" , "success")
 
-
-  
+//  blockChain.print();
 
 
 	
