@@ -2032,11 +2032,9 @@ class Merkle {
 
   genHash(tmp, n) { // postorder
 
-
-   
       if (tmp.left == null && tmp.right == null) {
        
-        tmp.hash = sha256(this.blockchain[n]);
+        tmp.hash= sha256(this.blockchain[n]);
     
         n+=1;
      
@@ -2044,16 +2042,9 @@ class Merkle {
      
       }
     
-  
-  
-   
-    
       this.genHash(tmp.left, n)
-  
       this.genHash(tmp.right, n)  
-    
-     
-      tmp.hash = sha256(tmp.left.hash+tmp.right.hash);
+      tmp.hash = sha256(tmp.left.hash);
 
   
   
@@ -2136,16 +2127,11 @@ class Merkle {
   graph1(node) {
     if(node != null){
       if(node.left != null){
-        this.dot += "n"+node.hash +'[label="' +node.hash+ '"];\n';
-        this.dot += node.left.hash+ '[label="' + node.left.hash+ '"];\n';
-        this.dot += "n"+node.hash +" -> " + node.left.hash+"\n";
+        this.dot += node.left.hash  + "---------------";
+   
       }
     // terminamos con el derecho agregando los label en cada corrida que pasa
-    if (node.right!= null) {
-      this.dot +=node.hash+'[label="' + node.hash+ '"];\n';
-      this.dot+= node.right.hash+ '[label="' + node.right.hash +'"];\n';
-      this.dot +=node.hash+" -> " +node.right.hash+"\n";
-    }
+    +
     this.graph1(node.left);
     this.graph1(node.right);
   } else {
@@ -2169,8 +2155,8 @@ var as = setInterval(()=>{
 
  merkle33.println();
 
-//  merkle33.graphmerkle();
-// merkle33.printgraph();
+ merkle33.graphmerkle();
+merkle33.printgraph();
 
 
   
