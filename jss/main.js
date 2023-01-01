@@ -2044,7 +2044,7 @@ class Merkle {
     
       this.genHash(tmp.left, n)
       this.genHash(tmp.right, n)  
-      tmp.hash = sha256(tmp.left.hash);
+      tmp.hash = sha256(tmp.left.hash+tmp.right.hash);
 
   
   
@@ -2066,7 +2066,7 @@ class Merkle {
    
     this.createTree(exp)
  
-    this.genHash(this.tophash, 0)
+    this.genHash(this.tophash, exp)
   }
   println(){
     document.getElementById("blochchain-container").innerHTML = ""
@@ -2121,21 +2121,31 @@ class Merkle {
     if(this.tophash == null){
 
     }else{
-      this.graph1(this.tophash)
+      this.graph1(this.tophash,0,0)
     }
   }
-  graph1(node) {
+  graph1(node,cabeza,hijo) {
     if(node != null){
-      if(node.left != null){
-        this.dot += node.left.hash  + "---------------";
-   
+      
+      hijo+=1;
+      this.dot += "N_"+hijo+"[label = \""+node.hash+"\"];\n";
+      if(cabeza != 0){
+        this.dot+= "N_"+cabeza+" -> N_"+hijo+";\n";
       }
+      let max = this.graph1(node.left,hijo,hijo)
+    
+      let max33 =this.graph1(node.right,hijo,max)
+      hijo = max33
+   
+      return hijo
+   
+    
     // terminamos con el derecho agregando los label en cada corrida que pasa
-    +
-    this.graph1(node.left);
-    this.graph1(node.right);
+    
+   
   } else {
     console.log("no existen datos");
+    return hijo
   }
       }
    printgraph(){
@@ -2155,8 +2165,8 @@ var as = setInterval(()=>{
 
  merkle33.println();
 
- merkle33.graphmerkle();
-merkle33.printgraph();
+//  merkle33.graphmerkle();
+// merkle33.printgraph();
 
 
   
