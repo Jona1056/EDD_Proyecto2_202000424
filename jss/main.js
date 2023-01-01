@@ -1964,7 +1964,11 @@ class Merkle {
   generarBloque(pelicula){
  
     // Debe ir DD-MM-YY-::HH:MM:SS
-		var date = new Date(Date.now());//revisar formato
+		var date3 = new Date()//revisar formato
+    let date = date3.toLocaleString()
+  
+ 
+
     //Hash Anterior
 		var prevHash = "";
 		if(this.isEmpty()){
@@ -1982,18 +1986,18 @@ class Merkle {
     this.auth();
  
     //Data revisar
-    var data= this.tophash.hash
+    var data= this.tophash.hash // aqui obtenemos el dato del tohash
 
 		var nonce = 0;
 		var hash = "";
 
 		//prueba de trabajo
 		while(!hash.startsWith("00")){	
-			hash = sha256(this.size+date+prevHash+data+nonce);
+			hash = sha256(this.size+date+prevHash+data+nonce); // aqui encontramos el hash para que empieze en 00, va ir cambiando por el nonce
 			nonce += 1;
 		} 
-		var newdata = new Bloque(this.size,date,pelicula,nonce,prevHash,data,hash);
-		this.datablock.push(newdata)
+		var newdata = new Bloque(this.size,date,pelicula,nonce,prevHash,data,hash); // creamos el bloque
+		this.datablock.push(newdata) // y lo añadimos
     this.size++;
     dato33 = ""
 	}	
@@ -2015,36 +2019,32 @@ class Merkle {
 
 
   createTree(exp) {
-    this.tophash = new HashNode(0)
-    this._createTree(this.tophash, exp )
+    this.tophash = new HashNode(0) // creamos el arbol 
+    this._createTree(this.tophash, exp ) // y aqui lo hacemos recursivo
 
   }
 
-  _createTree(tmp, exp) {
-    if (exp > 0) {
-      tmp.left = new HashNode(0)
-      tmp.right = new HashNode(0)
-      this._createTree(tmp.left, exp - 1)
+  _createTree(tmp, exp) { 
+    if (exp > 0) { // mandamos el dato exp, como puede ser 2 o 4 o 8 dependiendo los valores
+      tmp.left = new HashNode(0) // gregamos para el izquierd
+      tmp.right = new HashNode(0) // agregamos para el derecho
+      this._createTree(tmp.left, exp - 1) // mandamos el temp izquierdo pero con un exp menos empezando de abajo para arriba
       this._createTree(tmp.right, exp - 1)
     }
    
   }
 
   genHash(tmp, n) { // postorder
+    // aqui creamos los hash
 
-      if (tmp.left == null && tmp.right == null) {
-       
-        tmp.hash= sha256(this.blockchain[n]);
-    
+      if (tmp.left == null && tmp.right == null) {// si el temp izquierdo y el temp derecho es vacio entonces agregas al hash el dato del blockain en la posicion n
+        tmp.hash= sha256(this.blockchain[n]); 
         n+=1;
-     
         return n
-     
       }
-    
-      this.genHash(tmp.left, n)
+          this.genHash(tmp.left, n) // lo hacemos recursivo para llenar lls hash
       this.genHash(tmp.right, n)  
-      tmp.hash = sha256(tmp.left.hash+tmp.right.hash);
+      tmp.hash = sha256(tmp.left.hash+tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
 
   
   
@@ -2059,7 +2059,7 @@ class Merkle {
       exp += 1 // suma 1 al exponete 
     }
     for (var i = this.blockchain.length; i < Math.pow(2, exp); i++) {
-      this.blockchain.push(1) // y en este for ingresamos en el blochchain los datos que nos haya dado el exp
+      this.blockchain.push(1) // y en este for ingresamos hasta el numero de exp
     }
  
 
@@ -2101,7 +2101,7 @@ class Merkle {
   graphmerkle(){
  
     this.dot = "";
-    this.dot = 'digraph SimpleList{\nnode[shape= box, fillcolor="#FFFFFF", style= filled];\nbgcolor = "  #00ccff ";\nranksep = 0.5;\nnodesep = 0.5;\nsubgraph cluster_A{\nlabel = "Actores";\nbgcolor = "  #00ffad ";\nfontcolor ="black ";\nfontsize = 30;\n\n ';
+    this.dot = 'digraph SimpleList{\nnode[shape= box, fillcolor="#FFFFFF", style= filled];\nbgcolor = "  #00ccff ";\nranksep = 0.5;\nnodesep = 0.5;\nsubgraph cluster_A{\nlabel = "ARBOL MERKLE";\nbgcolor = "  #00ffad ";\nfontcolor ="black ";\nfontsize = 30;\n\n ';
     this._grap();
     
     this.dot += "}\n}";
@@ -2121,26 +2121,24 @@ class Merkle {
     if(this.tophash == null){
 
     }else{
-      this.graph1(this.tophash,0,0)
+      this.graph1(this.tophash,0,0) // mandamos a llamar el metodo recursivo
     }
   }
   graph1(node,cabeza,hijo) {
     if(node != null){
       
-      hijo+=1;
-      this.dot += "N_"+hijo+"[label = \""+node.hash+"\"];\n";
+      hijo+=1; 
+      this.dot += "Nodo"+hijo+"[label = \""+node.hash+"\"];\n"; //  agregamos al dot el dato de hijo con la posicion de cabeza
       if(cabeza != 0){
-        this.dot+= "N_"+cabeza+" -> N_"+hijo+";\n";
+        this.dot+= "Nodo"+cabeza+" -> Nodo"+hijo+";\n"; // si la cabeza es diferente de 0 apunta al hijo
       }
-      let max = this.graph1(node.left,hijo,hijo)
+      let subhijo= this.graph1(node.left,hijo,hijo) // mandamos a llamar el metodo y dependiendo el valor del hijo mandamos a llamar el metodo derecho
     
-      let max33 =this.graph1(node.right,hijo,max)
+      let max33 =this.graph1(node.right,hijo,subhijo) // aqui ya cambiamos le metodo derecho
       hijo = max33
    
       return hijo
-   
-    
-    // terminamos con el derecho agregando los label en cada corrida que pasa
+
     
    
   } else {
@@ -2155,7 +2153,7 @@ class Merkle {
 
   
 }
-var time = 5000
+var time = 3000
 var merkle33 = new Merkle();
 var dato33 = ""
 var as = setInterval(()=>{
@@ -2165,7 +2163,7 @@ var as = setInterval(()=>{
 
  merkle33.println();
 
-//  merkle33.graphmerkle();
+ merkle33.graphmerkle();
 // merkle33.printgraph();
 
 
@@ -2175,25 +2173,39 @@ var as = setInterval(()=>{
 
 
 function genblock(){
- merkle33.generarBloque(dato33);
- merkle33.println();
+  merkle33.generarBloque(dato33)
+  merkle33.println();
+  merkle33.graphmerkle();
+ clearInterval(as)
+ as = setInterval(()=>{
+ 
+ 
+  merkle33.generarBloque(dato33)
+  merkle33.println();
+  merkle33.graphmerkle();
+ 
+ },time)
+
 }
 
 function modsec(){
   let timenew = document.getElementById("sec").value;
+
   if(timenew == ""){
     swal("error","Ingrese un valor","error")
   }else{
     if(!isNaN(timenew)){
       let newtime = timenew*1000;
       clearInterval(as)
+      time = newtime
       as = setInterval(()=>{
  
  
         merkle33.generarBloque(dato33)
         merkle33.println();
+        merkle33.graphmerkle();
        
-       },newtime)
+       },time)
       
 
   }else{

@@ -340,6 +340,21 @@ h3 {
   overflow: auto;
 
 }
+#arbolmerkle{
+  display:flex;
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  height: 25vw;
+  background-color: white;
+  align-items: center;
+  margin-top:-5%;
+ 
+  margin-left: 30%;
+  overflow: auto;
+  margin-bottom: 100px;
+
+}
 #showcategorias{
   display:none;
   margin: 0;
