@@ -2084,6 +2084,7 @@ class Merkle {
             <p>Bloque:  ${this.datablock[i].index}</p>
             <p>Hash:  ${this.datablock[i].hash}</p>
             <p>PrevHash:  ${this.datablock[i].prevHash}</p>
+            <p>Nonce:  ${this.datablock[i].nonce}</p>
           
 
         </div>
@@ -2153,7 +2154,7 @@ class Merkle {
 
   
 }
-var time = 3000
+var time = 300000
 var merkle33 = new Merkle();
 var dato33 = ""
 var as = setInterval(()=>{
