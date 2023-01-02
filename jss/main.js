@@ -1987,7 +1987,7 @@ class Merkle {
  
     //Data revisar
     var data= this.tophash.hash // aqui obtenemos el dato del tohash
-    
+
 		var nonce = 0;
 		var hash = "";
 
@@ -2042,13 +2042,12 @@ class Merkle {
 
       if (tmp.left == null && tmp.right == null) {// si el temp izquierdo y el temp derecho es vacio entonces agregas al hash el dato del blockain en la posicion n
         tmp.hash= sha256(this.blockchain[n]); 
-      
         n+=1;
         return n
       }
           this.genHash(tmp.left, n) // lo hacemos recursivo para llenar lls hash
       this.genHash(tmp.right, n)  
-      tmp.hash = sha256(tmp.left.hash + tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
+      tmp.hash = sha256(tmp.left.hash+tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
 
   }
  
@@ -2066,7 +2065,7 @@ class Merkle {
    
     this.createTree(exp)
  
-    this.genHash(this.tophash, 0)
+    this.genHash(this.tophash, exp)
   }
   println(){
     document.getElementById("blochchain-container").innerHTML = ""
@@ -2122,31 +2121,37 @@ class Merkle {
     if(this.tophash == null){
 
     }else{
-      this.graph(this.tophash,0,0) // mandamos a llamar el metodo recursivo
+      this.graph1(this.tophash,0,0) // mandamos a llamar el metodo recursivo
     }
   }
-graph(node, cabeza, hijo) {
-    if (node !== null) {
-      hijo += 1;
-      let label = hijo % 2 === 0 ? node.hash : 1;
-      this.dot += `Nodo${hijo}[label = "${label}"];\n`;
-      if (cabeza !== 0) {
-        this.dot += `Nodo${cabeza} -> Nodo${hijo};\n`;
+  graph1(node,cabeza,hijo) {
+    if(node!= null){
+      
+      hijo+=1; 
+      this.dot += "Nodo"+hijo+"[label = \""+node.hash+"\"];\n"; //  agregamos al dot el dato de hijo con la posicion de cabeza
+      if(cabeza != 0){
+        this.dot+= "Nodo"+cabeza+" -> Nodo"+hijo+";\n"; // si la cabeza es diferente de 0 apunta al hijo
       }
-  
-      let subhijo = this.graph(node.left, hijo, hijo);
-      if (node.right === null) {
-        return hijo;
-      } else {
-        let max33 = this.graph(node.right, hijo, subhijo);
-        hijo = max33;
-  
-        return hijo;
+ 
+      let subhijo= this.graph1(node.left,hijo,hijo) // mandamos a llamar el metodo y dependiendo el valor del hijo mandamos a llamar el metodo derecho
+      if (node.right == null){
+          return hijo
+      }else{
+        let max33 =this.graph1(node.right,hijo,subhijo) // aqui ya cambiamos le metodo derecho
+        hijo = max33
+     
+        return hijo
       }
-    } else {
-      return hijo;
+     
+
+  } else {
+    this.dot += "Nodo"+hijo+"[label = \""+1+"\"];\n"
+    if(cabeza != 0){
+      this.dot+= "Nodo"+cabeza+" -> Nodo"+hijo+";\n"; // si la cabeza es diferente de 0 apunta al hijo
     }
+    return hijo
   }
+      }
    printgraph(){
    swal("hola mundo",""+this.dot,"success")
     
