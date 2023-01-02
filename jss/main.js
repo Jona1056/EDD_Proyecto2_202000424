@@ -2046,10 +2046,6 @@ class Merkle {
       this.genHash(tmp.right, n)  
       tmp.hash = sha256(tmp.left.hash+tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
 
-  
-  
-
- 
   }
  
   auth() {
@@ -2140,8 +2136,6 @@ class Merkle {
    
       return hijo
 
-    
-   
   } else {
     console.log("no existen datos");
     return hijo
