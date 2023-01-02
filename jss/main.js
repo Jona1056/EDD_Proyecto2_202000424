@@ -2125,22 +2125,30 @@ class Merkle {
     }
   }
   graph1(node,cabeza,hijo) {
-    if(node != null){
+    if(node!= null){
       
       hijo+=1; 
       this.dot += "Nodo"+hijo+"[label = \""+node.hash+"\"];\n"; //  agregamos al dot el dato de hijo con la posicion de cabeza
       if(cabeza != 0){
         this.dot+= "Nodo"+cabeza+" -> Nodo"+hijo+";\n"; // si la cabeza es diferente de 0 apunta al hijo
       }
+ 
       let subhijo= this.graph1(node.left,hijo,hijo) // mandamos a llamar el metodo y dependiendo el valor del hijo mandamos a llamar el metodo derecho
-    
-      let max33 =this.graph1(node.right,hijo,subhijo) // aqui ya cambiamos le metodo derecho
-      hijo = max33
-   
-      return hijo
+      if (node.right == null){
+          return hijo
+      }else{
+        let max33 =this.graph1(node.right,hijo,subhijo) // aqui ya cambiamos le metodo derecho
+        hijo = max33
+     
+        return hijo
+      }
+     
 
   } else {
-    console.log("no existen datos");
+    this.dot += "Nodo"+hijo+"[label = \""+1+"\"];\n"
+    if(cabeza != 0){
+      this.dot+= "Nodo"+cabeza+" -> Nodo"+hijo+";\n"; // si la cabeza es diferente de 0 apunta al hijo
+    }
     return hijo
   }
       }
