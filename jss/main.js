@@ -2047,7 +2047,7 @@ class Merkle {
       }
           this.genHash(tmp.left, n) // lo hacemos recursivo para llenar lls hash
       this.genHash(tmp.right, n)  
-      tmp.hash = "sha256(tmp.left.hash+tmp.right.hash)"; // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
+      tmp.hash = sha256(tmp.left.hash+tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
 
   }
  
