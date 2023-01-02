@@ -2036,9 +2036,7 @@ class Merkle {
 
   genHash(tmp, n) { // postorder
     // aqui creamos los hash
-    if (tmp == null){
-      return true
-    }
+    
 
       if (tmp.left == null && tmp.right == null) {// si el temp izquierdo y el temp derecho es vacio entonces agregas al hash el dato del blockain en la posicion n
         tmp.hash= sha256(this.blockchain[n]); 
@@ -2048,7 +2046,7 @@ class Merkle {
           this.genHash(tmp.left, n) // lo hacemos recursivo para llenar lls hash
       this.genHash(tmp.right, n)  
       tmp.hash = sha256(tmp.left.hash+tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
-
+  
   }
  
   auth() {
@@ -2065,7 +2063,7 @@ class Merkle {
    
     this.createTree(exp)
  
-    this.genHash(this.tophash, exp)
+    this.genHash(this.tophash, 0)
   }
   println(){
     document.getElementById("blochchain-container").innerHTML = ""
