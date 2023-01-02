@@ -2019,9 +2019,9 @@ class Merkle {
 
 
   createTree(exp) {
-    this.tophash = new HashNode(0) // creamos el arbol 
-    this._createTree(this.tophash, exp ) // y aqui lo hacemos recursivo
-
+    var node  = new HashNode(0) // creamos el arbol 
+    this._createTree(node, exp ) // y aqui lo hacemos recursivo
+    this.tophash = node;
   }
 
   _createTree(tmp, exp) { 
@@ -2036,6 +2036,9 @@ class Merkle {
 
   genHash(tmp, n) { // postorder
     // aqui creamos los hash
+    if (tmp == null){
+      return true
+    }
 
       if (tmp.left == null && tmp.right == null) {// si el temp izquierdo y el temp derecho es vacio entonces agregas al hash el dato del blockain en la posicion n
         tmp.hash= sha256(this.blockchain[n]); 
@@ -2044,7 +2047,7 @@ class Merkle {
       }
           this.genHash(tmp.left, n) // lo hacemos recursivo para llenar lls hash
       this.genHash(tmp.right, n)  
-      tmp.hash = sha256(tmp.left.hash+tmp.right.hash); // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
+      tmp.hash = "sha256(tmp.left.hash+tmp.right.hash)"; // y al hash le damos el valor de derecho y el izquierdo siguiendo el valor del arbol merkle
 
   }
  
@@ -2055,7 +2058,7 @@ class Merkle {
       exp += 1 // suma 1 al exponete 
     }
     for (var i = this.blockchain.length; i < Math.pow(2, exp); i++) {
-      this.blockchain.push(1) // y en este for ingresamos hasta el numero de exp
+      this.blockchain.push(1) //  este for ingresamos hasta el numero de exp
     }
  
 
